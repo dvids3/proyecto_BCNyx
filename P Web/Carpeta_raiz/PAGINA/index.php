@@ -58,7 +58,7 @@ session_start();
                       <li class="submenu">
                         <a href="#" id="btn-contacto">Contacto</a>
                         <div id="tooltip-contacto" class="tooltip oculto">
-                          <p><strong>Teléfono:</strong> <span id="telefono">323 598 8488</span>
+                          <p><strong>Teléfono:</strong> <span id="telefono">324 503 1920</span>
                             <button onclick="copiarTexto('telefono')">📋</button>
                           </p>
                           <p><strong>Correo:</strong> <span id="correo">contacto@ejemplo.com</span>
