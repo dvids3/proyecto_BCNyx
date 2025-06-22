@@ -1,47 +1,45 @@
 document.addEventListener("DOMContentLoaded", function () {
-    // Validación del formulario de registro
-    const form = document.getElementById("form-login");
+const form = document.getElementById("form-login");
 
-    if (form) {
-        form.addEventListener("submit", function (e) {
-            limpiarErrores();
+if (form) {
+    form.addEventListener("submit", function (e) {
+        limpiarErrores();
 
-            const nombre = document.querySelector('[name="nombre"]');
-            const password = document.querySelector('[name="clave"]');
-            const correo = document.querySelector('[name="correo"]');
-            const telefono = document.querySelector('[name="telefono"]');
+        const nombre = document.querySelector('[name="nombre"]');
+        const password = document.querySelector('[name="clave"]');
+        const correo = document.querySelector('[name="correo"]');
+        const telefono = document.querySelector('[name="telefono"]');
 
-            let valido = true;
+        let valido = true;
 
-            if (nombre && nombre.value.trim() === "") {
-                mostrarError(nombre, "El nombre es obligatorio.");
-                valido = false;
-            }
+        if (nombre && nombre.value.trim() === "") {
+            mostrarError(nombre, "El nombre es obligatorio.");
+            valido = false;
+        }
 
-            if (password && password.value.length <= 5) {
-                mostrarError(password, "La contraseña debe tener más de 5 caracteres.");
-                valido = false;
-            }
+        if (password && password.value.length <= 5) {
+            mostrarError(password, "La contraseña debe tener más de 5 caracteres.");
+            valido = false;
+        }
 
-            const regexCorreo = /^[a-zA-Z0-9._%+-]+@gmail\.com$/;
-            if (correo && !regexCorreo.test(correo.value)) {
-                mostrarError(correo, "El correo debe ser una cuenta de Gmail.");
-                valido = false;
-            }
+        const regexCorreo = /^[a-zA-Z0-9._%+-]+@gmail\.com$/;
+        if (correo && !regexCorreo.test(correo.value)) {
+            mostrarError(correo, "El correo debe ser una cuenta de Gmail.");
+            valido = false;
+        }
 
-            const regexTelefono = /^3\d{9}$/;
-            if (telefono && !regexTelefono.test(telefono.value)) {
-                mostrarError(telefono, "El número debe tener 10 dígitos y comenzar con 3.");
-                valido = false;
-            }
+        const regexTelefono = /^3\d{9}$/;
+        if (telefono && !regexTelefono.test(telefono.value)) {
+            mostrarError(telefono, "El número debe tener 10 dígitos y comenzar con 3.");
+            valido = false;
+        }
 
-            if (!valido) {
-                e.preventDefault();
-            }
-        });
-    }
+        if (!valido) {
+            e.preventDefault();
+        }
+    });
+}
 
-    // Mostrar errores desde login.php
     const urlParams = new URLSearchParams(window.location.search);
     const error = urlParams.get("error");
 

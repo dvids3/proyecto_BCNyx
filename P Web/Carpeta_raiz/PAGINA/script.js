@@ -63,16 +63,32 @@ function actualizarContador() {
   
 
 function eliminarElemento(e) {
-    e.preventDefault();
-    let elemento,
-        elementoId;
-    if (e.target.classList.contains("borrar")) {
-        e.target.parentElement.parentElement.remove();
-        elemento = e.target.parentElement.parentElement;
-        elementoId = elemento.querySelector("a").getAttribute("data-id");
-    }
+  e.preventDefault();
+  let elemento, elementoId;
+
+  if (e.target.classList.contains("borrar")) {
+    elemento = e.target.parentElement.parentElement;
+    elementoId = elemento.querySelector("a").getAttribute("data-id");
+
+    // Elimina del DOM
+    elemento.remove();
+
+    // Elimina de la base de datos (nuevo código)
+    fetch('eliminar_del_carrito.php', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: `id_producto=${elementoId}`
+    })
+    .then(res => res.text())
+    .then(res => {
+      console.log("Servidor: ", res); // opcional
+    });
+
+    // Actualiza el contador
     actualizarContador();
+  }
 }
+
 
 function vaciarCarrito() {
     while (lista.firstChild) {
@@ -81,6 +97,7 @@ function vaciarCarrito() {
     actualizarContador();
 }
   
+
 document.addEventListener('DOMContentLoaded', () => {
     const btnServicios = document.getElementById('btn-servicios');
     const tooltip = document.getElementById('tooltip-servicios');
@@ -141,9 +158,22 @@ window.addEventListener("scroll", actualizarLogoSticky);
     const cerrarModal = document.getElementById("cerrar-modal");
   
     carritoIcon.addEventListener("click", (e) => {
-      e.preventDefault();
-      modal.classList.remove("oculto");
-    });
+    e.preventDefault();
+
+    const lista = document.querySelector("#lista-carrito tbody");
+
+    // Limpia el contenido actual del carrito
+    lista.innerHTML = "";
+
+    // Carga el contenido desde PHP
+    fetch("mostrar_carrito.php")
+      .then(res => res.text())
+      .then(html => {
+        lista.innerHTML = html; // Inserta las filas en la tabla
+        modal.classList.remove("oculto"); // Muestra el modal
+      });
+  });
+
   
     cerrarModal.addEventListener("click", () => {
       modal.classList.add("oculto");
@@ -307,4 +337,16 @@ cerrar.addEventListener('click', () => {
   actualizarContadorSticky();
 });
 
+function mostrarPopup(texto, tiempo = 2000) {
+  const popup = document.getElementById("popup-mensaje");
+  const textoPopup = document.getElementById("popup-texto");
 
+  textoPopup.textContent = texto;
+  popup.classList.remove("popup-oculto");
+  popup.classList.add("popup-mostrar");
+
+  setTimeout(() => {
+    popup.classList.remove("popup-mostrar");
+    popup.classList.add("popup-oculto");
+  }, tiempo);
+}

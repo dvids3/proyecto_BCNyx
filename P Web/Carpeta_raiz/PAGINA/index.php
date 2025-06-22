@@ -3,6 +3,12 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 session_start();
+if (isset($_SESSION['id_usuario'])) {
+  echo "✅ Sesión activa. ID usuario: " . $_SESSION['id_usuario'];
+} else {
+  echo "❌ No hay sesión activa.";
+}
+
 ?>
 
 <html lang="es">
@@ -65,7 +71,7 @@ session_start();
                             <button onclick="copiarTexto('correo')">📋</button>
                           </p>
                         </div>
-                            <?php if (isset($_SESSION['usuario'])): ?>
+                            <?php if (isset($_SESSION['id_usuario'])): ?>
                             <li><a href="#" onclick="confirmarCerrarSesion()" class="cerrar-sesion-link">Cerrar sesión</a></li>
                         <?php else: ?>
                             <li><a href="../Login/registro/registro.htm">Registrarse</a></li>
@@ -75,11 +81,12 @@ session_start();
                 </ul>
             </nav>
                 <?php if (isset($_SESSION['usuario'])): ?>
-                    <div class="nube-con-saludo" id="saludo-flotante">
-                        <img src="images/nube.png" alt="nube" class="nube-img">
-                        <span class="saludo-en-nube">Hola, <?= htmlspecialchars($_SESSION['usuario']) ?> Que se dice</span>
-                    </div>
+                <div class="nube-con-saludo" id="saludo-flotante">
+                    <img src="images/nube.png" alt="nube" class="nube-img">
+                    <span class="saludo-en-nube">Hola, <?= htmlspecialchars($_SESSION['usuario']) ?> Que se dice</span>
+                </div>
                 <?php endif; ?>
+
 
                 <div id="modal-cerrar-sesion" class="modal-overlay">
                 <div class="modal-contenido">
@@ -115,6 +122,7 @@ session_start();
                                 <tbody></tbody>
                                 </table>
                                 <a href="#" id="vaciar-carrito" class="btn-2">Vaciar Carrito</a>
+                                <a href="#" id="comprar-carrito" class="btn-2">Comprar</a>
                             </div>
                         </div>
                     </li>
@@ -152,8 +160,8 @@ session_start();
                 <div class="product-txt">
                     <h3>Buzo 1</h3>
                     <p>mejor calidad</p>
-                    <p class="precio">100.000</p>
-                    <a href="#" class="agregar-carrito btn-3" data-id="1">Agregar</a>
+                    <p class="precio">100000</p>
+                    <a href="#" class="agregar-carrito btn-3" data-id="1" data-nombre="Buzo 1" data-precio="100000">Agregar</a>
                 </div>
             </div>
             
@@ -163,7 +171,8 @@ session_start();
                     <h3>Buzo 2</h3>
                     <p>mejor calidad</p>
                     <p class="precio">50000</p>
-                    <a href="#" class="agregar-carrito btn-3" data-id="2">Agregar</a>
+                    <a href="#" class="agregar-carrito btn-3" data-id="2" data-nombre="Buzo 2" data-precio="50000">Agregar</a>
+
                 </div>
             </div> 
 
@@ -194,8 +203,8 @@ session_start();
                 <div class="product-txt">
                     <h3>Buzo 1</h3>
                     <p>mejor calidad</p>
-                    <p class="precio">100.000</p>
-                    <a href="#" class="agregar-carrito btn-3" data-id="3">Agregar</a>
+                    <p class="precio">100000</p>
+                    <a href="#" class="agregar-carrito btn-3" data-id="3" data-nombre="Buzo 3" data-precio="100000">Agregar</a>
                 </div>
             </div> 
             <div class="ofert-1">
@@ -203,8 +212,8 @@ session_start();
                 <div class="product-txt">
                     <h3>Buzo 2</h3>
                     <p>mejor calidad</p>
-                    <p class="precio">100.000</p>
-                    <a href="#" class="agregar-carrito btn-3" data-id="4">Agregar</a>
+                    <p class="precio">100000</p>
+                    <a href="#" class="agregar-carrito btn-3" data-id="4" data-nombre="Buzo 4" data-precio="100000">Agregar</a>
                 </div>
             </div> 
         </div>
@@ -240,8 +249,8 @@ session_start();
                 <div class="product-txt">
                     <h3>Buzo 1</h3>
                     <p>mejor calidad</p>
-                    <p class="precio">100.000</p>
-                    <a href="#" class="agregar-carrito btn-3" data-id="5">Agregar</a>
+                    <p class="precio">100000</p>
+                    <a href="#" class="agregar-carrito btn-3" data-id="5" data-nombre="Buzo 5" data-precio="100000">Agregar</a>
                 </div>
             </div>
 
@@ -250,8 +259,8 @@ session_start();
                 <div class="product-txt">
                     <h3>Buzo 1</h3>
                     <p>mejor calidad</p>
-                    <p class="precio">100.000</p>
-                    <a href="#" class="agregar-carrito btn-3" data-id="6">Agregar</a>
+                    <p class="precio">100000</p>
+                    <a href="#" class="agregar-carrito btn-3" data-id="6" data-nombre="Buzo 6" data-precio="100000">Agregar</a>
                 </div>
             </div>
 
@@ -260,8 +269,8 @@ session_start();
                 <div class="product-txt">
                     <h3>Buzo 1</h3>
                     <p>mejor calidad</p>
-                    <p class="precio">100.000</p>
-                    <a href="#" class="agregar-carrito btn-3" data-id="7">Agregar</a>
+                    <p class="precio">100000</p>
+                    <a href="#" class="agregar-carrito btn-3" data-id="7" data-nombre="Buzo 7" data-precio="100000">Agregar</a>
                 </div>
             </div>
 
@@ -270,8 +279,8 @@ session_start();
                 <div class="product-txt">
                     <h3>Buzo 1</h3>
                     <p>mejor calidad</p>
-                    <p class="precio">100.000</p>
-                    <a href="#" class="agregar-carrito btn-3" data-id="8">Agregar</a>
+                    <p class="precio">100000</p>
+                    <a href="#" class="agregar-carrito btn-3" data-id="8" data-nombre="Buzo 8" data-precio="100000">Agregar</a>
                 </div>
             </div>
 
@@ -280,8 +289,8 @@ session_start();
                 <div class="product-txt">
                     <h3>Buzo 1</h3>
                     <p>mejor calidad</p>
-                    <p class="precio">100.000</p>
-                    <a href="#" class="agregar-carrito btn-3" data-id="9">Agregar</a>
+                    <p class="precio">100000</p>
+                    <a href="#" class="agregar-carrito btn-3" data-id="9" data-nombre="Buzo 9" data-precio="100000">Agregar</a>
                 </div>
             </div>
 
@@ -290,8 +299,8 @@ session_start();
                 <div class="product-txt">
                     <h3>Buzo 1</h3>
                     <p>mejor calidad</p>
-                    <p class="precio">100.000</p>
-                    <a href="#" class="agregar-carrito btn-3" data-id="10">Agregar</a>
+                    <p class="precio">100000</p>
+                    <a href="#" class="agregar-carrito btn-3" data-id="10" data-nombre="Buzo 10" data-precio="100000">Agregar</a>
                 </div>
             </div>
 
@@ -404,7 +413,6 @@ session_start();
         </div>
     </div>
 
-<!-- Modal para sesión -->
     <div id="modal-sesion" class="modal-overlay" style="display: none;">
     <div class="modal-contenido">
         <p>Debes estar registrado para agregar productos al carrito</p>
@@ -415,6 +423,8 @@ session_start();
     </div>
     </div>
 
+    <div id="toast"></div>
+
 
 
 
@@ -424,7 +434,7 @@ session_start();
   let isDragging = false;
   let offsetX, offsetY;
 
-  // 🖱️ Desktop: mouse
+
   nube.addEventListener("mousedown", (e) => {
     isDragging = true;
     offsetX = e.clientX - nube.getBoundingClientRect().left;
@@ -467,6 +477,7 @@ session_start();
 </script>
 
 
+
 <script>
 function confirmarCerrarSesion() {
   document.getElementById("modal-cerrar-sesion").style.display = "flex";
@@ -481,6 +492,8 @@ function cerrarSesion() {
 }
 </script>
 
+
+
 <script>
   function cerrarModalSesion() {
     document.getElementById("modal-sesion").style.display = "none";
@@ -492,10 +505,84 @@ function cerrarSesion() {
 </script>
 
 
+
 <script>
   const sesionActiva = <?= isset($_SESSION['usuario']) ? 'true' : 'false' ?>;
 </script>
 
+
+
+<script>
+document.addEventListener('click', function(e) {
+  if (e.target.classList.contains('agregar-carrito')) {
+    const boton = e.target;
+    const id_producto = boton.getAttribute('data-id');
+    const nombre = boton.getAttribute('data-nombre');
+    const precio = boton.getAttribute('data-precio');
+
+    fetch('agregar_al_carrito.php', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    body: `id_producto=${id_producto}&nombre=${encodeURIComponent(nombre)}&precio=${precio}`
+    })
+    .then(res => {
+    if (!res.ok) {
+        return;
+    }
+    return res.text();
+    })
+    .then(res => {
+    if (res && res.includes("Producto guardado")) {
+        mostrarToast("✅ Producto añadido al carrito");
+    }
+    });
+  }
+});
+</script>
+
+
+
+<script>
+document.getElementById('comprar-carrito').addEventListener('click', function(e) {
+  e.preventDefault();
+
+  fetch('comprar_carrito.php', {
+    method: 'POST'
+  })
+  .then(res => res.text())
+  .then(res => {
+    if (res.includes("Compra realizada")) {
+      mostrarToast("✅ Compra realizada con éxito");
+
+      // Limpia visualmente el carrito
+      document.querySelector("#lista-carrito tbody").innerHTML = "";
+    } else {
+      mostrarToast("⚠️ Error: " + res);
+    }
+  })
+  .catch(err => {
+    mostrarToast("❌ Error en la petición: " + err);
+  });
+});
+</script>
+
+
+
+<script>
+function mostrarToast(mensaje, duracion = 2500) {
+  const toast = document.getElementById('toast');
+  toast.textContent = mensaje;
+  toast.style.display = 'block';
+  toast.style.opacity = 1;
+
+  setTimeout(() => {
+    toast.style.opacity = 0;
+    setTimeout(() => {
+      toast.style.display = 'none';
+    }, 300);
+  }, duracion);
+}
+</script>
 
 <script src="script.js"></script>
 </body>

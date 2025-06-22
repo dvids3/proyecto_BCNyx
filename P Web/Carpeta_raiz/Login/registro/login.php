@@ -10,26 +10,31 @@ if ($conexion->connect_error) {
 $correo = $_POST['correo'];
 $clave = $_POST['clave'];
 
-$sql = "SELECT nombre, clave FROM usuarios WHERE correo = ?";
+// ✅ También seleccionamos el ID del usuario
+$sql = "SELECT id, nombre, clave FROM usuarios WHERE correo = ?";
 $stmt = $conexion->prepare($sql);
 $stmt->bind_param("s", $correo);
 $stmt->execute();
 $stmt->store_result();
 
 if ($stmt->num_rows !== 1) {
-    header("Location: iniciar.htm?error=usuario");
+    header("Location: iniciar.htm?error=id_usuario");
     exit();
 }
 
-$stmt->bind_result($nombre, $claveHash);
+// ✅ Recuperamos el id también
+$stmt->bind_result($id_usuario, $nombre, $claveHash);
 $stmt->fetch();
 
+// ✅ Verificamos la contraseña
 if (!password_verify($clave, $claveHash)) {
     header("Location: iniciar.htm?error=clave");
     exit();
 }
 
-// ✅ Inicio de sesión exitoso
+$_SESSION['id_usuario'] = $id_usuario;
 $_SESSION['usuario'] = $nombre;
 header("Location: ../../PAGINA/index.php");
 exit();
+
+?>

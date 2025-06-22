@@ -787,11 +787,12 @@ object-fit: cover;
   width: 100%;
   height: auto;
   display: block;
+  cursor: pointer;
 }
 
 .saludo-en-nube {
   position: absolute;
-  top: 35%;
+  top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   color: white;
@@ -799,6 +800,7 @@ object-fit: cover;
   font-size: 15px;
   text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
   pointer-events: auto;
+  cursor: pointer;
 }
 
 .modal-overlay {
@@ -904,7 +906,22 @@ object-fit: cover;
   color: #333;
 }
 
-
+#toast {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #333;
+  color: #fff;
+  padding: 14px 24px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-family: sans-serif;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  display: none;
+  z-index: 9999;
+  transition: opacity 0.3s ease;
+}
 
 
 @media (max-width: 991px) {
