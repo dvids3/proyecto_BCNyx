@@ -15,11 +15,6 @@ function cargareventListeners() {
 function comprarElemento(e) {
   e.preventDefault();
 
-  if (typeof sesionActiva !== "undefined" && !sesionActiva) {
-    document.getElementById("modal-sesion").style.display = "flex";
-    return;
-  }
-
   if (e.target.classList.contains("agregar-carrito")) {
     const elemento = e.target.parentElement.parentElement;
     leerDatosElemento(elemento);
@@ -37,17 +32,33 @@ function leerDatosElemento(elemento) {
     insertarCarrito(infoElemento);
     }
 
-function insertarCarrito(Elemento) {
-    const row = document.createElement("tr");
-    row.innerHTML = `
-        <td><img src="${Elemento.imagen}" width=100></td>
-        <td>${Elemento.titulo}</td>
-        <td>${Elemento.precio}</td>
-        <td><a href="#" class="borrar" data-id="${Elemento.id}">X</a></td>
-    `;
-    lista.appendChild(row);
-    actualizarContador();
+function insertarCarrito(elemento) {
+  // Agrega visualmente al DOM
+  const row = document.createElement("tr");
+  row.innerHTML = `
+    <td><img src="${elemento.imagen}" width=100></td>
+    <td>${elemento.titulo}</td>
+    <td>${elemento.precio}</td>
+    <td><a href="#" class="borrar" data-id="${elemento.id}">X</a></td>
+  `;
+  lista.appendChild(row);
+
+  // Si el usuario NO está logueado, guarda en localStorage
+  if (!USUARIO_LOGUEADO) {
+    let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+
+    // Evita duplicados por ID
+    const yaExiste = carrito.some(item => item.id === elemento.id);
+    if (!yaExiste) {
+      carrito.push(elemento);
+      localStorage.setItem("carrito", JSON.stringify(carrito));
+    }
+  }
+
+  actualizarContador();
+  actualizarContadorSticky();
 }
+
 
 function actualizarContador() {
     const contador = document.getElementById("contador-carrito");
@@ -64,39 +75,66 @@ function actualizarContador() {
 
 function eliminarElemento(e) {
   e.preventDefault();
-  let elemento, elementoId;
 
-  if (e.target.classList.contains("borrar")) {
-    elemento = e.target.parentElement.parentElement;
-    elementoId = elemento.querySelector("a").getAttribute("data-id");
+  if (!e.target.classList.contains("borrar")) return;
 
-    // Elimina del DOM
-    elemento.remove();
+  const fila = e.target.closest("tr");
+  const productoId = e.target.getAttribute("data-id");
 
-    // Elimina de la base de datos (nuevo código)
+  if (typeof USUARIO_LOGUEADO !== 'undefined' && USUARIO_LOGUEADO) {
+    // 🔐 Usuario logueado: eliminar de la base de datos
     fetch('eliminar_del_carrito.php', {
       method: 'POST',
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: `id_producto=${elementoId}`
+      body: `id_producto=${productoId}`
     })
     .then(res => res.text())
     .then(res => {
-      console.log("Servidor: ", res); // opcional
+      if (res.trim() === "ok") {
+        fila.remove(); // ✅ Solo si la base lo confirma
+        actualizarContador();
+        actualizarContadorSticky();
+      } else {
+        console.error("Error al eliminar:", res);
+      }
     });
-
-    // Actualiza el contador
+  } else {
+    // 👤 Usuario no logueado: eliminar desde localStorage
+    let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+    carrito = carrito.filter(item => item.id !== productoId);
+    localStorage.setItem("carrito", JSON.stringify(carrito));
+    fila.remove(); // Eliminar del DOM
     actualizarContador();
+    actualizarContadorSticky();
   }
 }
 
 
 function vaciarCarrito() {
-    while (lista.firstChild) {
-        lista.removeChild(lista.firstChild);
-    }
+  if (typeof USUARIO_LOGUEADO !== 'undefined' && USUARIO_LOGUEADO) {
+    // 🔐 Usuario logueado: vacía desde la base de datos
+    fetch('vaciar_carrito.php', {
+      method: 'POST'
+    })
+    .then(res => res.text())
+    .then(res => {
+      if (res.trim() === "ok") {
+        lista.innerHTML = "";
+        actualizarContador();
+        actualizarContadorSticky();
+      } else {
+        console.error("Error al vaciar desde BD:", res);
+      }
+    });
+  } else {
+    // 👤 Usuario no logueado: vacía desde localStorage
+    localStorage.removeItem("carrito");
+    lista.innerHTML = "";
     actualizarContador();
+    actualizarContadorSticky();
+  }
 }
-  
+
 
 document.addEventListener('DOMContentLoaded', () => {
     const btnServicios = document.getElementById('btn-servicios');
@@ -158,21 +196,44 @@ window.addEventListener("scroll", actualizarLogoSticky);
     const cerrarModal = document.getElementById("cerrar-modal");
   
     carritoIcon.addEventListener("click", (e) => {
-    e.preventDefault();
+      e.preventDefault();
 
-    const lista = document.querySelector("#lista-carrito tbody");
+      const lista = document.querySelector("#lista-carrito tbody");
 
-    // Limpia el contenido actual del carrito
-    lista.innerHTML = "";
+      // Limpia el contenido actual del carrito
+      lista.innerHTML = "";
 
-    // Carga el contenido desde PHP
-    fetch("mostrar_carrito.php")
-      .then(res => res.text())
-      .then(html => {
-        lista.innerHTML = html; // Inserta las filas en la tabla
-        modal.classList.remove("oculto"); // Muestra el modal
-      });
-  });
+      if (typeof USUARIO_LOGUEADO !== "undefined" && USUARIO_LOGUEADO) {
+        // Si el usuario está logueado, cargar desde PHP
+        fetch("mostrar_carrito.php")
+          .then(res => res.text())
+          .then(html => {
+            lista.innerHTML = html;
+            modal.classList.remove("oculto");
+            actualizarContador();
+            actualizarContadorSticky();
+          });
+      } else {
+        // Si NO está logueado, cargar desde localStorage
+        const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+
+        carrito.forEach(el => {
+          const row = document.createElement("tr");
+          row.innerHTML = `
+            <td><img src="${el.imagen}" width=100></td>
+            <td>${el.titulo}</td>
+            <td>${el.precio}</td>
+            <td><a href="#" class="borrar" data-id="${el.id}">X</a></td>
+          `;
+          lista.appendChild(row);
+        });
+
+        modal.classList.remove("oculto");
+        actualizarContador();
+        actualizarContadorSticky();
+      }
+    });
+
 
   
     cerrarModal.addEventListener("click", () => {
@@ -201,23 +262,7 @@ botonesInfo.forEach(boton => {
     logoSticky.classList.remove("visible");
 
     });
-
-  const botonesInfo = document.querySelectorAll('.abrir-info');
-  const modalInfo = document.getElementById('info-modal');
-  const textoInfo = document.getElementById('info-texto');
-  const cerrarInfo = document.getElementById('cerrar-info-modal');
-  
-  botonesInfo.forEach(boton => {
-    boton.addEventListener('click', e => {
-      e.preventDefault();
-      const textoBoton = boton.getAttribute('data-texto');
-      textoInfo.textContent = textoBoton;
-      modalInfo.classList.remove('oculto');
-      logoSticky.style.display = 'none'; 
-    });
-
   });
-});
 
 
 cerrar.addEventListener('click', () => {

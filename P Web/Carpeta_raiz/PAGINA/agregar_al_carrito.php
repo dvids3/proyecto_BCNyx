@@ -1,46 +1,44 @@
 <?php
 session_start();
+include("conexion.php");
 
-if (!isset($_SESSION['id_usuario'])) {
-  http_response_code(401); // Código HTTP para "No autorizado"
-  exit("Usuario no logueado");
-}
+// Detectar si el usuario está logueado o es anónimo
+$id_usuario = $_SESSION['id_usuario'] ?? null;
+$id_sesion = session_id(); // identificador único de sesión
 
-
-include 'coneccion.php'; // tu archivo de conexión
-
-$id_usuario = $_SESSION['id_usuario'];
+// Datos del producto enviados por POST
 $id_producto = $_POST['id_producto'];
-$nombre = $_POST['nombre'];
+$nombre = $_POST['nombre_producto'];
 $precio = $_POST['precio'];
+$imagen = $_POST['imagen'];
 $cantidad = 1;
 
-// Primero revisamos si ya está el mismo producto en el carrito del mismo usuario
-$sql = "SELECT * FROM carrito WHERE id_usuario = ? AND id_producto = ?";
-$stmt = $conn->prepare($sql);
-$stmt->bind_param("ii", $id_usuario, $id_producto);
-$stmt->execute();
-$resultado = $stmt->get_result();
-
-if ($resultado->num_rows > 0) {
-  // Si ya existe, aumentamos la cantidad
-  $sql = "UPDATE carrito SET cantidad = cantidad + 1 WHERE id_usuario = ? AND id_producto = ?";
-  $stmt = $conn->prepare($sql);
-  $stmt->bind_param("ii", $id_usuario, $id_producto);
+// Verificar si ya existe en el carrito para evitar duplicados
+if ($id_usuario) {
+    $check = "SELECT * FROM carrito WHERE id_usuario = '$id_usuario' AND id_producto = '$id_producto'";
 } else {
-  // Si no existe, lo insertamos nuevo
-  $sql = "INSERT INTO carrito (id_usuario, id_producto, nombre_producto, precio, cantidad) VALUES (?, ?, ?, ?, ?)";
-  $stmt = $conn->prepare($sql);
-  $stmt->bind_param("iisdi", $id_usuario, $id_producto, $nombre, $precio, $cantidad);
+    $check = "SELECT * FROM carrito WHERE id_sesion = '$id_sesion' AND id_producto = '$id_producto'";
 }
 
-if ($stmt->execute()) {
-  echo "✅ Producto guardado en el carrito";
-} else {
-  echo "❌ Error al guardar: " . $stmt->error;
+$result = mysqli_query($conn, $check);
+
+if (mysqli_num_rows($result) > 0) {
+    echo "Producto ya en el carrito";
+    exit;
 }
 
+// Insertar según si está logueado o no
+if ($id_usuario) {
+    $query = "INSERT INTO carrito (id_usuario, id_producto, nombre_producto, precio, cantidad, imagen)
+              VALUES ('$id_usuario', '$id_producto', '$nombre', '$precio', '$cantidad', '$imagen')";
+} else {
+    $query = "INSERT INTO carrito (id_sesion, id_producto, nombre_producto, precio, cantidad, imagen)
+              VALUES ('$id_sesion', '$id_producto', '$nombre', '$precio', '$cantidad', '$imagen')";
+}
 
-$stmt->close();
-$conn->close();
+if (mysqli_query($conn, $query)) {
+    echo "Producto agregado correctamente";
+} else {
+    echo "Error al agregar: " . mysqli_error($conn);
+}
 ?>

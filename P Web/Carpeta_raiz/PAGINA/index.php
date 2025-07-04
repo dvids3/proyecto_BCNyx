@@ -18,21 +18,21 @@ if (isset($_SESSION['id_usuario'])) {
     <title>Document</title>
     <link rel="stylesheet" href="style_de_index.css">
 </head>
-<body id="top">
 
+<body id="top">
 <div id="logoSticky" class="logo-sticky">
-  <div class="sticky-left">
-    <a href="#top" class="inicio-btn">INICIO</a>
-  </div>
-  <div class="sticky-center">
-    <div class="logo-text">BC NYX</div>
-  </div>
-  <div class="sticky-right">
-    <div class="carrito-wrapper">
-      <img src="images/car.svg" id="img-carrito-sticky" alt="carrito">
-      <span id="contador-carrito-sticky" class="contador">0</span>
+    <div class="sticky-left">
+        <a href="#top" class="inicio-btn">INICIO</a>
     </div>
-  </div>
+    <div class="sticky-center">
+        <div class="logo-text">BC NYX</div>
+    </div>
+    <div class="sticky-right">
+        <div class="carrito-wrapper">
+            <img src="images/carr.svg" id="img-carrito-sticky" alt="carrito">
+            <span id="contador-carrito-sticky" class="contador">0</span>
+        </div>
+    </div>
 </div>
 
     <div id="info-modal" class="info-modal oculto">
@@ -40,12 +40,11 @@ if (isset($_SESSION['id_usuario'])) {
           <span id="cerrar-info-modal" class="cerrar-info">X</span>
           <img src="images/sol_.png" alt="Información">
           <div id="info-texto" class="info-texto"></div>
-      </div>
-      </div>  
+        </div>
+    </div>  
       
     
-    <header class="header">
-                    
+    <header class="header">                  
         <div class="menu container">    
             <a href="#" class="logo">BC Nyx</a>
             <input type="checkbox" id="menu" aria-label="Abrir menu de navegacion">
@@ -57,53 +56,52 @@ if (isset($_SESSION['id_usuario'])) {
                     <li class="submenu">
                         <a href="#" id="btn-servicios">Servicios</a>
                         <div id="tooltip-servicios" class="tooltip oculto">
-                          <p>Ofrecemos envíos rápidos, personalización de productos y atención al cliente 24/7.</p>
-                          <a href="#">Ver más</a>
+                            <p>Ofrecemos envíos rápidos, personalización de productos y atención al cliente 24/7.</p>
+                            <a href="#">Ver más</a>
                         </div>
-                      </li>                     
-                      <li class="submenu">
+                    </li>                     
+                    <li class="submenu">
                         <a href="#" id="btn-contacto">Contacto</a>
-                        <div id="tooltip-contacto" class="tooltip oculto">
-                          <p><strong>Teléfono:</strong> <span id="telefono">324 503 1920</span>
-                            <button onclick="copiarTexto('telefono')">📋</button>
-                          </p>
-                          <p><strong>Correo:</strong> <span id="correo">contacto@ejemplo.com</span>
-                            <button onclick="copiarTexto('correo')">📋</button>
-                          </p>
-                        </div>
-                            <?php if (isset($_SESSION['id_usuario'])): ?>
+                            <div id="tooltip-contacto" class="tooltip oculto">
+                                <p><strong>Teléfono:</strong> <span id="telefono">324 503 1920</span>
+                                    <button onclick="copiarTexto('telefono')">📋</button>
+                                </p>
+                                <p><strong>Correo:</strong> <span id="correo">contacto@ejemplo.com</span>
+                                    <button onclick="copiarTexto('correo')">📋</button>
+                                </p>
+                            </div>
+                        <?php if (isset($_SESSION['id_usuario'])): ?>
                             <li><a href="#" onclick="confirmarCerrarSesion()" class="cerrar-sesion-link">Cerrar sesión</a></li>
                         <?php else: ?>
                             <li><a href="../Login/registro/registro.htm">Registrarse</a></li>
                         <?php endif; ?>
-
-                      </li>                     
+                    </li>                     
                 </ul>
             </nav>
                 <?php if (isset($_SESSION['usuario'])): ?>
-                <div class="nube-con-saludo" id="saludo-flotante">
-                    <img src="images/nube.png" alt="nube" class="nube-img">
-                    <span class="saludo-en-nube">Hola, <?= htmlspecialchars($_SESSION['usuario']) ?> Que se dice</span>
-                </div>
+                    <div class="nube-con-saludo" id="saludo-flotante">
+                        <img src="images/nube.png" alt="nube" class="nube-img">
+                        <span class="saludo-en-nube">Hola, <?= htmlspecialchars($_SESSION['usuario']) ?> Que se dice</span>
+                    </div>
                 <?php endif; ?>
-
-
                 <div id="modal-cerrar-sesion" class="modal-overlay">
-                <div class="modal-contenido">
-                    <p>¿Seguro que quieres cerrar sesión?</p>
-                    <div class="botones">
-                    <button onclick="cerrarSesion()" class="btn-si">Sí</button>
-                    <button onclick="cerrarModal()" class="btn-no">Cancelar</button>
+                    <div class="modal-contenido">
+                        <p>¿Seguro que quieres cerrar sesión?</p>
+                        <div class="botones">
+                        <button onclick="cerrarSesion()" class="btn-si">Sí</button>
+                        <button onclick="cerrarModal()" class="btn-no">Cancelar</button>
+                        </div>
                     </div>
                 </div>
-                </div>
-
-
             <div>
                 <ul>
                     <li class="submenu">
                         <div class="carrito-wrapper">
-                            <img src="images/car.svg" id="img-carrito" alt="carrito">
+                            <a href="pago.php">
+                                <img src="images/tarjeta.svg" alt="pago">
+                                <span id="contador-tarjeta" class="contador" style="display: none;">0</span>
+                            </a>
+                            <img src="images/carr.svg" id="img-carrito" alt="carrito">
                             <span id="contador-carrito" class="contador">0</span>
                         </div>
                         <div id="carrito-modal" class="modal oculto">
@@ -111,15 +109,15 @@ if (isset($_SESSION['id_usuario'])) {
                                 <span class="cerrar-modal" id="cerrar-modal">x</span>
                                 <h2>Carrito de Compras</h2>
                                 <table id="lista-carrito">
-                                <thead>
-                                <tr>
-                                    <th>Imagen</th>
-                                    <th>Nombre</th>
-                                    <th>Precio</th>
-                                    <th></th>
-                                </tr>
-                                </thead>
-                                <tbody></tbody>
+                                    <thead>
+                                        <tr>
+                                            <th>Imagen</th>
+                                            <th>Nombre</th>
+                                            <th>Precio</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody></tbody>
                                 </table>
                                 <a href="#" id="vaciar-carrito" class="btn-2">Vaciar Carrito</a>
                                 <a href="#" id="comprar-carrito" class="btn-2">Comprar</a>
@@ -129,7 +127,6 @@ if (isset($_SESSION['id_usuario'])) {
                 </ul>
             </div>
         </div>
-
         <div class="header-content container">
             <div class="header-txt">
                 <p class="subtitulo">¡Novedades de temporada!</p>
@@ -139,14 +136,13 @@ if (isset($_SESSION['id_usuario'])) {
                 </p>
                 <a href="#lista-1" class="btn-1">Ver Productos</a>
             </div>
-
             <div class="header-img">
                 <img src="Buzos/buzo.png_image.png" alt="buzo" class="main-img">
                 <img src="images/cinta.com.png" alt="Cinta de peligro" class="danger-tape">
               </div>              
-        </div>
-       
+        </div>    
     </header>
+
 
     <section class="oferts container" id=lista-1>
         <h2>Nuestros productos principales</h2>
@@ -156,12 +152,16 @@ if (isset($_SESSION['id_usuario'])) {
 
         <div class="oferts-content">
             <div class="ofert-1">
-                <img src="Buzos/buzo_blanco.png" class="buzo-blanco" alt="buzo">
+                <img src="Buzos/B5 - frente.png" class="B5" alt="buzo">
                 <div class="product-txt">
                     <h3>Buzo 1</h3>
                     <p>mejor calidad</p>
                     <p class="precio">100000</p>
-                    <a href="#" class="agregar-carrito btn-3" data-id="1" data-nombre="Buzo 1" data-precio="100000">Agregar</a>
+                    <a href="#" class="agregar-carrito btn-3"
+                    data-id="1"
+                    data-nombre="Buzo 1"
+                    data-precio="100000"
+                    data-imagen="Buzos/buzo_blanco.png">Agregar</a>
                 </div>
             </div>
             
@@ -170,11 +170,14 @@ if (isset($_SESSION['id_usuario'])) {
                 <div class="product-txt">
                     <h3>Buzo 2</h3>
                     <p>mejor calidad</p>
-                    <p class="precio">50000</p>
-                    <a href="#" class="agregar-carrito btn-3" data-id="2" data-nombre="Buzo 2" data-precio="50000">Agregar</a>
-
+                    <p class="precio">100000</p>
+                    <a href="#" class="agregar-carrito btn-3"
+                    data-id="2"
+                    data-nombre="Buzo 2"
+                    data-precio="100000"
+                    data-imagen="Buzos/buzo_gris.png">Agregar</a>
                 </div>
-            </div> 
+            </div>
 
             <div class="logan-1">
                 <h3>Hoodies</h3>
@@ -184,44 +187,50 @@ if (isset($_SESSION['id_usuario'])) {
                 <a href="#" class="btn-2 abrir-info" data-texto="Materiales: Estos son los materiales de los buzos
                 <br>Elaboracion: Esta es la elaboracion de los buzos
                 <br>">Información</a>
-
-
             </div>
-        </div>       
-
-        <div class="oferts-content">
-            <div class="logan-1">
-                <h3>Buzos</h3>
-                <p>
-                    ------------
-                </p>
-                <a href="#" class="btn-2 abrir-info" data-texto="Este es el texto para HOODIES">Información</a>
-
-            </div>            
-            <div class="ofert-1">
-                <img src="images/pr3.png" alt="">
-                <div class="product-txt">
-                    <h3>Buzo 1</h3>
-                    <p>mejor calidad</p>
-                    <p class="precio">100000</p>
-                    <a href="#" class="agregar-carrito btn-3" data-id="3" data-nombre="Buzo 3" data-precio="100000">Agregar</a>
-                </div>
-            </div> 
-            <div class="ofert-1">
-                <img src="images/pr4.png" alt="">
-                <div class="product-txt">
-                    <h3>Buzo 2</h3>
-                    <p>mejor calidad</p>
-                    <p class="precio">100000</p>
-                    <a href="#" class="agregar-carrito btn-3" data-id="4" data-nombre="Buzo 4" data-precio="100000">Agregar</a>
-                </div>
-            </div> 
         </div>
 
+        <div class="oferts-content">
+                <div class="logan-1">
+                    <h3>Buzos</h3>
+                    <p>
+                    ------------
+                    </p>
+                    <a href="#" class="btn-2 abrir-info" data-texto="Este es el texto para HOODIES">Información</a>
+                </div>
+
+            <div class="ofert-1">
+                <img src="Buzos/buzo_blanco.png" class="buzo-blanco" alt="buzo">
+                <div class="product-txt">
+                    <h3>Buzo 3</h3>
+                    <p>mejor calidad</p>
+                    <p class="precio">100000</p>
+                    <a href="#" class="agregar-carrito btn-3"
+                    data-id="3"
+                    data-nombre="Buzo 3"
+                    data-precio="100000"
+                    data-imagen="Buzos/buzo_blanco.png">Agregar</a>
+                </div>
+            </div>
+ 
+            <div class="ofert-1">
+                <img src="Buzos/buzo_blanco.png" class="buzo-blanco" alt="buzo">
+                <div class="product-txt">
+                    <h3>Buzo 4</h3>
+                    <p>mejor calidad</p>
+                    <p class="precio">100000</p>
+                    <a href="#" class="agregar-carrito btn-3"
+                    data-id="4"
+                    data-nombre="Buzo 4"
+                    data-precio="100000"
+                    data-imagen="Buzos/buzo_blanco.png">Agregar</a>
+                </div>
+            </div>
+        </div>
     </section>
 
-    <section class="promotion">
 
+    <section class="promotion">
         <div class="promotion-content container">
             <div class="promotion-txt">
                 <h2>Las Mejores Promociones</h2>
@@ -234,8 +243,8 @@ if (isset($_SESSION['id_usuario'])) {
                     <img src="images/r1.png" alt="Imagen">
             </div>
         </div>
-
     </section>
+
 
     <main class="product container" id="lista-2">
         <h2>Productos</h2>
@@ -243,70 +252,106 @@ if (isset($_SESSION['id_usuario'])) {
             Los Productos
         </p>
         <div class="product-content">
-
             <div class="ofert-1">
-                <img src="images/1.png" alt="">
+                <img src="Buzos/buzo_blanco.png" class="buzo-blanco" alt="buzo">
                 <div class="product-txt">
-                    <h3>Buzo 1</h3>
+                    <h3>Buzo 5</h3>
                     <p>mejor calidad</p>
                     <p class="precio">100000</p>
-                    <a href="#" class="agregar-carrito btn-3" data-id="5" data-nombre="Buzo 5" data-precio="100000">Agregar</a>
+                    <a href="#" class="agregar-carrito btn-3"
+                    data-id="5"
+                    data-nombre="Buzo 5"
+                    data-precio="100000"
+                    data-imagen="Buzos/buzo_blanco.png">
+                    Agregar
+                    </a>
                 </div>
             </div>
 
             <div class="ofert-1">
-                <img src="images/2.png" alt="">
+                <img src="Buzos/buzo_blanco.png" class="buzo-blanco" alt="buzo">
                 <div class="product-txt">
-                    <h3>Buzo 1</h3>
+                    <h3>Buzo 6</h3>
                     <p>mejor calidad</p>
                     <p class="precio">100000</p>
-                    <a href="#" class="agregar-carrito btn-3" data-id="6" data-nombre="Buzo 6" data-precio="100000">Agregar</a>
+                    <a href="#" class="agregar-carrito btn-3"
+                    data-id="6"
+                    data-nombre="Buzo 6"
+                    data-precio="100000"
+                    data-imagen="Buzos/buzo_blanco.png">
+                    Agregar
+                    </a>
                 </div>
             </div>
 
+
             <div class="ofert-1">
-                <img src="images/3.png" alt="">
+                <img src="Buzos/buzo_blanco.png" class="buzo-blanco" alt="buzo">
                 <div class="product-txt">
-                    <h3>Buzo 1</h3>
+                    <h3>Buzo 7</h3>
                     <p>mejor calidad</p>
                     <p class="precio">100000</p>
-                    <a href="#" class="agregar-carrito btn-3" data-id="7" data-nombre="Buzo 7" data-precio="100000">Agregar</a>
+                    <a href="#" class="agregar-carrito btn-3"
+                    data-id="7"
+                    data-nombre="Buzo 7"
+                    data-precio="100000"
+                    data-imagen="Buzos/buzo_blanco.png">
+                    Agregar
+                    </a>
                 </div>
             </div>
 
+
             <div class="ofert-1">
-                <img src="images/4.png" alt="">
+                <img src="Buzos/buzo_blanco.png" class="buzo-blanco" alt="buzo">
                 <div class="product-txt">
-                    <h3>Buzo 1</h3>
+                    <h3>Buzo 8</h3>
                     <p>mejor calidad</p>
                     <p class="precio">100000</p>
-                    <a href="#" class="agregar-carrito btn-3" data-id="8" data-nombre="Buzo 8" data-precio="100000">Agregar</a>
+                    <a href="#" class="agregar-carrito btn-3"
+                    data-id="8"
+                    data-nombre="Buzo 8"
+                    data-precio="100000"
+                    data-imagen="Buzos/buzo_blanco.png">
+                    Agregar
+                    </a>
                 </div>
             </div>
 
             <div class="ofert-1 locked">
-                <img src="images/candado.png" alt="">
+                <img src="images/candado.png" alt="bloqueado">
                 <div class="product-txt">
-                    <h3>Buzo 1</h3>
+                    <h3>Buzo 9</h3>
                     <p>mejor calidad</p>
                     <p class="precio">100000</p>
-                    <a href="#" class="agregar-carrito btn-3" data-id="9" data-nombre="Buzo 9" data-precio="100000">Agregar</a>
+                    <a href="#" class="agregar-carrito btn-3"
+                    data-id="9"
+                    data-nombre="Buzo 10"
+                    data-precio="100000"
+                    data-imagen="images/candado.png">
+                    Agregar
+                    </a>
                 </div>
             </div>
 
             <div class="ofert-1 locked">
-                <img src="images/candado.png" alt="">
+                <img src="images/candado.png" alt="bloqueado">
                 <div class="product-txt">
-                    <h3>Buzo 1</h3>
+                    <h3>Buzo 10</h3>
                     <p>mejor calidad</p>
                     <p class="precio">100000</p>
-                    <a href="#" class="agregar-carrito btn-3" data-id="10" data-nombre="Buzo 10" data-precio="100000">Agregar</a>
+                    <a href="#" class="agregar-carrito btn-3"
+                    data-id="10"
+                    data-nombre="Buzo 10"
+                    data-precio="100000"
+                    data-imagen="images/candado.png">
+                    Agregar
+                    </a>
                 </div>
             </div>
-
          </div>
-
     </main>
+
 
     <section class="bloog container">
         <h2>Noticias</h2>
@@ -413,17 +458,9 @@ if (isset($_SESSION['id_usuario'])) {
         </div>
     </div>
 
-    <div id="modal-sesion" class="modal-overlay" style="display: none;">
-    <div class="modal-contenido">
-        <p>Debes estar registrado para agregar productos al carrito</p>
-        <div class="botones">
-            <button onclick="irARegistro()" class="btn-si">Sí, quiero registrarme</button>
-            <button onclick="cerrarModalSesion()" class="btn-no">Voy a dar una vuelta y vuelvo</button>
-        </div>
-    </div>
-    </div>
-
     <div id="toast"></div>
+
+    
 
 
 
@@ -494,6 +531,7 @@ function cerrarSesion() {
 
 
 
+
 <script>
   function cerrarModalSesion() {
     document.getElementById("modal-sesion").style.display = "none";
@@ -507,7 +545,7 @@ function cerrarSesion() {
 
 
 <script>
-  const sesionActiva = <?= isset($_SESSION['usuario']) ? 'true' : 'false' ?>;
+  const USUARIO_LOGUEADO = <?= isset($_SESSION['id_usuario']) ? 'true' : 'false' ?>;
 </script>
 
 
@@ -516,25 +554,36 @@ function cerrarSesion() {
 document.addEventListener('click', function(e) {
   if (e.target.classList.contains('agregar-carrito')) {
     const boton = e.target;
+
+    // Obtener datos
     const id_producto = boton.getAttribute('data-id');
-    const nombre = boton.getAttribute('data-nombre');
+    const nombre_producto = boton.getAttribute('data-nombre');
     const precio = boton.getAttribute('data-precio');
+    const imagen = boton.getAttribute('data-imagen');
 
     fetch('agregar_al_carrito.php', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-    body: `id_producto=${id_producto}&nombre=${encodeURIComponent(nombre)}&precio=${precio}`
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: `id_producto=${id_producto}&nombre_producto=${encodeURIComponent(nombre_producto)}&precio=${precio}&imagen=${encodeURIComponent(imagen)}`
     })
+    .then(res => res.text())
     .then(res => {
-    if (!res.ok) {
-        return;
-    }
-    return res.text();
-    })
-    .then(res => {
-    if (res && res.includes("Producto guardado")) {
-        mostrarToast("✅ Producto añadido al carrito");
-    }
+      console.log("Respuesta servidor:", res); // Debug
+
+      if (res && res.includes("Producto agregado")) {
+        mostrarToast("Producto añadido al carrito");
+
+        // Recargar lista del carrito
+        fetch("mostrar_carrito.php")
+          .then(r => r.text())
+          .then(html => {
+            const lista = document.querySelector("#lista-carrito tbody");
+            lista.innerHTML = html;
+
+            // ✅ actualizar ambos contadores desde base de datos
+            actualizarContadoresGlobal();
+          });
+      }
     });
   }
 });
@@ -542,29 +591,14 @@ document.addEventListener('click', function(e) {
 
 
 
+
 <script>
 document.getElementById('comprar-carrito').addEventListener('click', function(e) {
   e.preventDefault();
-
-  fetch('comprar_carrito.php', {
-    method: 'POST'
-  })
-  .then(res => res.text())
-  .then(res => {
-    if (res.includes("Compra realizada")) {
-      mostrarToast("✅ Compra realizada con éxito");
-
-      // Limpia visualmente el carrito
-      document.querySelector("#lista-carrito tbody").innerHTML = "";
-    } else {
-      mostrarToast("⚠️ Error: " + res);
-    }
-  })
-  .catch(err => {
-    mostrarToast("❌ Error en la petición: " + err);
-  });
+  window.location.href = 'comprar_carrito.php';
 });
 </script>
+
 
 
 
@@ -584,6 +618,6 @@ function mostrarToast(mensaje, duracion = 2500) {
 }
 </script>
 
-<script src="script.js"></script>
+<script type="module" src="script.js"></script>
 </body>
 </html>

@@ -1,29 +1,26 @@
 <?php
 session_start();
-if (!isset($_SESSION['id_usuario'])) {
-  exit;
+include "conexion.php";
+
+// Detectar si el usuario está logueado o es anónimo
+$id_usuario = $_SESSION['id_usuario'] ?? null;
+$id_sesion = session_id();
+
+// Mostrar el carrito según tipo de usuario
+if ($id_usuario) {
+    $query = "SELECT * FROM carrito WHERE id_usuario = '$id_usuario'";
+} else {
+    $query = "SELECT * FROM carrito WHERE id_sesion = '$id_sesion'";
 }
 
-include 'coneccion.php';
-$id_usuario = $_SESSION['id_usuario'];
+$resultado = mysqli_query($conn, $query);
 
-$sql = "SELECT * FROM carrito WHERE id_usuario = ?";
-$stmt = $conn->prepare($sql);
-$stmt->bind_param("i", $id_usuario);
-$stmt->execute();
-$resultado = $stmt->get_result();
-
-while ($fila = $resultado->fetch_assoc()) {
-  echo "
-    <tr>
-      <td><img src='images/car.svg' width='100'></td>
-      <td>{$fila['nombre_producto']}</td>
-      <td>{$fila['precio']}</td>
-      <td><a href='#' class='borrar' data-id='{$fila['id_producto']}'>X</a></td>
-    </tr>
-  ";
+while ($row = mysqli_fetch_assoc($resultado)) {
+    echo "<tr>";
+    echo "<td><img src='{$row['imagen']}' width='100'></td>";
+    echo "<td>{$row['nombre_producto']}</td>";
+    echo "<td>{$row['precio']}</td>";
+    echo "<td><a href='#' class='borrar' data-id='{$row['id_producto']}'>X</a></td>";
+    echo "</tr>";
 }
-
-$stmt->close();
-$conn->close();
 ?>
