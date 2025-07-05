@@ -8,11 +8,8 @@
 
 body {
   font-family: 'Playfair', sans-serif;
-  background: linear-gradient(
-    90deg,
-    rgb(0, 70, 67) 0%,
-    rgba(20, 90, 87) 100%);
-    display: flex;
+  background: linear-gradient(90deg, rgb(0, 70, 67) 0%, rgba(20, 90, 87) 100%);
+  display: flex;
   align-items: center;
   justify-content: center;
   min-height: 100vh;
@@ -25,13 +22,9 @@ form {
   background-size: cover;
   padding: 50px;
   width: 420px;
-  height: 700px;
+  height: auto;
   text-align: center;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-}
-
-.form-login {
-  padding-top: 120px;
 }
 
 form img {
@@ -41,56 +34,44 @@ form img {
 
 .input-container {
   position: relative;
+  margin-bottom: 15px;
 }
 
-.input-container > i{
+.input-container > i {
   padding: 14px;
   border-radius: 50%;
-  background: linear-gradient(
-    90deg,
-    rgba(249, 188, 96) 0%,
-    rgba(249, 188, 96) 100%);
+  background: linear-gradient(90deg, rgba(249, 188, 96) 0%, rgba(249, 188, 96) 100%);
   color: #ffffff;
   position: absolute;
   font-size: 20px;
   top: 7px;
   right: 8px;
+  pointer-events: none;
 }
 
-.input-container > input {
+/* INPUT STYLES */
+.input-container > input,
+.input-container > select {
   width: 100%;
   padding: 20px 40px 20px 40px;
   border-radius: 35px;
   border: 2px solid #f9bc60;
   outline: none;
   font-size: 17px;
-  margin-bottom: 25px;
   background-color: #ffffff;
   color: #000000;
 }
 
-.input-container .btn{
-  color: #001e1d;
+/* Consistencia en el diseño del SELECT */
+.input-container > select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
 }
 
-::placeholder {
-  color: #7f7f7f;
-  font-size: 17px;
-}
-
-form a {
-  text-decoration: none;
-  color: #ffffff;
-  font-size: 17px;
-  margin-top: 10px;
-  display: block;
-}
-
+/* Botón */
 .btn {
-  background: linear-gradient(
-    90deg,
-    rgba(249, 188, 96) 0%,
-    rgba(249, 188, 96) 100%);
+  background: linear-gradient(90deg, rgba(249, 188, 96) 0%, rgba(249, 188, 96) 100%);
   color: #001e1d;
   padding: 20px 20px 20px 30px;
   border-radius: 30px;
@@ -103,39 +84,58 @@ form a {
   font-family: 'Playfair', sans-serif;
 }
 
-input:invalid {
+/* Placeholder */
+::placeholder {
+  color: #7f7f7f;
+  font-size: 17px;
+}
+
+/* Enlace */
+form a {
+  text-decoration: none;
+  color: #ffffff;
+  font-size: 17px;
+  margin-top: 10px;
+  display: block;
+}
+
+/* Validación */
+input:invalid,
+select:invalid {
   border-bottom: 2px solid red;
 }
 
 .error {
   color: red;
   font-size: 12px;
-  margin-top: 5px;  
+  margin-top: 5px;
   display: block;
 }
 
-.input-container {
-  position: relative;
-  margin-bottom: 5px; 
-}
-
-.input-container input {
-  margin-bottom: 3px; 
-}
-
-
-@media(max-width: 991px) {
-
-body {
-  padding: 30px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 100vh;
-}
-form {
+.select-estilizado {
   width: 100%;
-  height: auto;
-  padding: 20px;
+  padding: 20px 20px;
+  border-radius: 35px;
+  border: 2px solid #f9bc60;
+  background-color: #ffffff;
+  color: #000000;
+  font-size: 17px;
+  margin-bottom: 25px;
+  outline: none;
+  font-family: 'Playfair', sans-serif;
 }
+
+
+/* Responsive */
+@media(max-width: 991px) {
+  body {
+    padding: 30px;
+  }
+
+  form {
+    width: 100%;
+    padding: 20px;
+    height: auto;
+  }
 }
+

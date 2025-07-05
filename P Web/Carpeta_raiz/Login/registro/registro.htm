@@ -1,45 +1,76 @@
 <!DOCTYPE html>
-<html lang="es"> 
+<html lang="es">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Registro</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="style_de_login.css">
 </head>
 <body>
 
-  <form id="form-login" action="registro.php" method="POST">
+<form action="registro.php" method="POST">
+  <img src="imagenes_login/logo.svg" alt="Logo">
 
-    <img src="imagenes_login/logo.svg" alt="Logo">
-
-    <div class="input-group">
-
-      <div class="input-container">
-        <input type="text" name="nombre" placeholder="Nombre" required>
-        <i class="fa-solid fa-user"></i>
-      </div>
-
-      <div class="input-container">
-        <input type="password" name="clave" placeholder="Contraseña" required>
-        <i class="fa-solid fa-lock"></i>
-      </div>
-
-      <div class="input-container">
-        <input type="email" name="correo" placeholder="Correo" required>
-        <i class="fa-solid fa-envelope"></i>
-      </div>
-
-      <div class="input-container">
-        <input type="tel" name="telefono" placeholder="Teléfono" required>
-        <i class="fa-solid fa-phone"></i>
-      </div>
-
-      <a href="iniciar.htm">¿Ya tienes cuenta? Iniciar sesión</a>
-      <input class="btn" type="submit" value="Registrarse">
-
+  <div class="input-group">
+    <div class="input-container">
+      <input type="text" name="nombre" placeholder="Nombre" required>
+      <i class="fa-solid fa-user"></i>
     </div>
-  </form>
-  
+
+    <div class="input-container">
+      <input type="text" name="apellidos" placeholder="Apellidos" required>
+      <i class="fa-solid fa-user"></i>
+    </div>
+
+    <div class="input-container">
+      <input type="email" name="correo" placeholder="Correo" required>
+      <i class="fa-solid fa-envelope"></i>
+    </div>
+
+    <div class="input-container">
+      <input type="password" name="clave" placeholder="Contraseña" required>
+      <i class="fa-solid fa-lock"></i>
+    </div>
+
+    <div class="input-container">
+      <input type="text" name="telefono" placeholder="Teléfono" required>
+      <i class="fa-solid fa-phone"></i>
+    </div>
+
+    <div class="input-container">
+      <select name="tipo_documento" required>
+        <option value="">Tipo de documento</option>
+        <option value="Cédula">Cédula</option>
+        <option value="Pasaporte">Pasaporte</option>
+        <option value="Otro">Otro</option>
+      </select>
+      <i class="fa-solid fa-id-card"></i>
+    </div>
+
+    <div class="input-container">
+      <input type="text" name="documento" placeholder="Número de documento" required>
+      <i class="fa-solid fa-id-card-clip"></i>
+    </div>
+
+    <div class="input-container">
+      <input type="text" name="pais" placeholder="País" required>
+      <i class="fa-solid fa-globe"></i>
+    </div>
+
+    <div class="input-container">
+      <input type="text" name="departamento" placeholder="Departamento" required>
+      <i class="fa-solid fa-map"></i>
+    </div>
+
+    <div class="input-container">
+      <input type="text" name="ciudad" placeholder="Ciudad" required>
+      <i class="fa-solid fa-location-dot"></i>
+    </div>
+
+    <a href="iniciar.htm">¿Ya tienes cuenta? Inicia sesión</a>
+    <input class="btn" type="submit" value="Registrarse">
+  </div>
+</form>
+
 </body>
 </html>

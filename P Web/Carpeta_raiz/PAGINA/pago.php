@@ -1,6 +1,6 @@
 <?php
 session_start();
-include("conexion.php"); // Ajusta ruta si hace falta
+include("conexion.php");
 
 $id_usuario = $_SESSION['id_usuario'] ?? null;
 $id_sesion = session_id();
@@ -27,7 +27,7 @@ while ($row = mysqli_fetch_assoc($resultado)) {
 <head>
   <meta charset="UTF-8">
   <title>Confirmar y Pagar</title>
-  <link rel="stylesheet" href="estilos/pago.css"> <!-- crea si deseas -->
+  <link rel="stylesheet" href="estilos/pago.css">
 </head>
 <body>
   <h1>Resumen de Compra</h1>
@@ -39,26 +39,25 @@ while ($row = mysqli_fetch_assoc($resultado)) {
         <th>Precio</th>
         <th>Cantidad</th>
         <th>Subtotal</th>
+        <th>Eliminar</th>
       </tr>
     </thead>
-        <tbody>
-        <?php foreach ($productos as $p): ?>
-            <tr>
-            <td><img src="<?= $p['imagen'] ?>" width="80"></td>
-            <td><?= $p['nombre_producto'] ?></td>
-            <td>$<?= number_format($p['precio'], 0, ',', '.') ?></td>
-            <td><?= $p['cantidad'] ?></td>
-            <td>$<?= number_format($p['precio'] * $p['cantidad'], 0, ',', '.') ?></td>
-            <td>
-                <button class="eliminar-producto" data-id="<?= $p['id_producto'] ?>">X</button>
-            </td>
-            </tr>
-        <?php endforeach; ?>
-        </tbody>
+    <tbody>
+      <?php foreach ($productos as $p): ?>
+        <tr>
+          <td><img src="<?= $p['imagen'] ?>" width="80"></td>
+          <td><?= $p['nombre_producto'] ?></td>
+          <td>$<?= number_format($p['precio'], 0, ',', '.') ?></td>
+          <td><?= $p['cantidad'] ?></td>
+          <td>$<?= number_format($p['precio'] * $p['cantidad'], 0, ',', '.') ?></td>
+          <td><button class="eliminar-producto" data-id="<?= $p['id_producto'] ?>">X</button></td>
+        </tr>
+      <?php endforeach; ?>
+    </tbody>
     <tfoot>
       <tr>
         <td colspan="4" style="text-align:right"><strong>Total:</strong></td>
-        <td><strong>$<?= number_format($total, 0, ',', '.') ?></strong></td>
+        <td colspan="2"><strong>$<?= number_format($total, 0, ',', '.') ?></strong></td>
       </tr>
     </tfoot>
   </table>
@@ -73,7 +72,7 @@ while ($row = mysqli_fetch_assoc($resultado)) {
     </select>
 
     <?php if (!$id_usuario): ?>
-      <h3>Datos de envío</h3>
+      <h3>Datos del comprador</h3>
       <input type="text" name="nombre" placeholder="Nombre" required><br>
       <input type="text" name="apellidos" placeholder="Apellidos" required><br>
       <select name="tipo_documento" required>
@@ -85,12 +84,15 @@ while ($row = mysqli_fetch_assoc($resultado)) {
       <input type="text" name="pais" value="Colombia" readonly><br>
       <input type="text" name="departamento" placeholder="Departamento" required><br>
       <input type="text" name="ciudad" placeholder="Ciudad" required><br>
-      <input type="text" name="direccion" placeholder="Dirección" required><br>
-      <textarea name="observaciones" placeholder="Especificaciones de la entrega"></textarea><br>
     <?php endif; ?>
+
+    <h3>Dirección de envío</h3>
+    <input type="text" name="direccion" placeholder="Dirección de entrega" required><br>
+    <textarea name="observaciones" placeholder="Especificaciones de la entrega"></textarea><br>
 
     <br><button type="submit">Confirmar y pagar</button>
   </form>
+
   <script type="module" src="script_pago.js"></script>
 </body>
 </html>

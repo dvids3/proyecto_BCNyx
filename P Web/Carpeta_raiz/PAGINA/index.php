@@ -101,8 +101,14 @@ if (isset($_SESSION['id_usuario'])) {
                                 <img src="images/tarjeta.svg" alt="pago">
                                 <span id="contador-tarjeta" class="contador" style="display: none;">0</span>
                             </a>
+
+                             <a href="perfil.php">
+                                <img src="images/perfil.svg" alt="Perfil">
+                            </a>
+
                             <img src="images/carr.svg" id="img-carrito" alt="carrito">
                             <span id="contador-carrito" class="contador">0</span>
+                                                 
                         </div>
                         <div id="carrito-modal" class="modal oculto">
                             <div class="modal-content">
@@ -152,30 +158,44 @@ if (isset($_SESSION['id_usuario'])) {
 
         <div class="oferts-content">
             <div class="ofert-1">
-                <img src="Buzos/B5 - frente.png" class="B5" alt="buzo">
+                <img 
+                src="Buzos/B5-frente.png" 
+                class="B5" 
+                alt="buzo"
+                onclick="abrirModalProducto('B5')">
+
                 <div class="product-txt">
-                    <h3>Buzo 1</h3>
-                    <p>mejor calidad</p>
-                    <p class="precio">100000</p>
-                    <a href="#" class="agregar-carrito btn-3"
-                    data-id="1"
-                    data-nombre="Buzo 1"
-                    data-precio="100000"
-                    data-imagen="Buzos/buzo_blanco.png">Agregar</a>
+                <h3>Buzo 1</h3>
+                <p>mejor calidad</p>
+                <p class="precio">100000</p>
+                <a href="#" class="agregar-carrito btn-3"
+                data-id="1"
+                data-nombre="Buzo 1"
+                data-precio="100000"
+                data-imagen="Buzos/B5-frente.png">Agregar</a>
                 </div>
             </div>
+
             
             <div class="ofert-1">
-                <img src="Buzos/buzo_gris.png" class="buzo-gris" alt="buzo">
+                <img 
+                    src="Buzos/B8-frente.png" 
+                    class="B8" 
+                    alt="buzo"
+                    onclick="abrirModalProducto('B8')">
+
                 <div class="product-txt">
                     <h3>Buzo 2</h3>
                     <p>mejor calidad</p>
                     <p class="precio">100000</p>
+
                     <a href="#" class="agregar-carrito btn-3"
                     data-id="2"
                     data-nombre="Buzo 2"
                     data-precio="100000"
-                    data-imagen="Buzos/buzo_gris.png">Agregar</a>
+                    data-imagen="Buzos/B8-frente.png">
+                    Agregar
+                    </a>
                 </div>
             </div>
 
@@ -200,32 +220,50 @@ if (isset($_SESSION['id_usuario'])) {
                 </div>
 
             <div class="ofert-1">
-                <img src="Buzos/buzo_blanco.png" class="buzo-blanco" alt="buzo">
+                <img 
+                    src="Buzos/B1-frente.png" 
+                    class="B1" 
+                    alt="buzo"
+                    onclick="abrirModalProducto('B1')">
+
                 <div class="product-txt">
                     <h3>Buzo 3</h3>
                     <p>mejor calidad</p>
                     <p class="precio">100000</p>
+
                     <a href="#" class="agregar-carrito btn-3"
                     data-id="3"
                     data-nombre="Buzo 3"
                     data-precio="100000"
-                    data-imagen="Buzos/buzo_blanco.png">Agregar</a>
+                    data-imagen="Buzos/B1-frente.png">
+                    Agregar
+                    </a>
                 </div>
             </div>
+
  
             <div class="ofert-1">
-                <img src="Buzos/buzo_blanco.png" class="buzo-blanco" alt="buzo">
+                <img 
+                    src="Buzos/B2-frente.png" 
+                    class="B2" 
+                    alt="buzo" 
+                    onclick="abrirModalProducto('B2')">
+
                 <div class="product-txt">
                     <h3>Buzo 4</h3>
                     <p>mejor calidad</p>
                     <p class="precio">100000</p>
+                    
                     <a href="#" class="agregar-carrito btn-3"
                     data-id="4"
                     data-nombre="Buzo 4"
                     data-precio="100000"
-                    data-imagen="Buzos/buzo_blanco.png">Agregar</a>
+                    data-imagen="Buzos/B2-frente.png">
+                    Agregar
+                    </a>
                 </div>
             </div>
+
         </div>
     </section>
 
@@ -253,70 +291,98 @@ if (isset($_SESSION['id_usuario'])) {
         </p>
         <div class="product-content">
             <div class="ofert-1">
-                <img src="Buzos/buzo_blanco.png" class="buzo-blanco" alt="buzo">
+                <img 
+                    src="Buzos/B3-frente.png" 
+                    class="B3" 
+                    alt="buzo" 
+                    onclick="abrirModalProducto('B3')">
+
                 <div class="product-txt">
                     <h3>Buzo 5</h3>
                     <p>mejor calidad</p>
                     <p class="precio">100000</p>
+
                     <a href="#" class="agregar-carrito btn-3"
                     data-id="5"
                     data-nombre="Buzo 5"
                     data-precio="100000"
-                    data-imagen="Buzos/buzo_blanco.png">
+                    data-imagen="Buzos/B3-frente.png">
                     Agregar
                     </a>
                 </div>
             </div>
 
+
             <div class="ofert-1">
-                <img src="Buzos/buzo_blanco.png" class="buzo-blanco" alt="buzo">
+                <img 
+                    src="Buzos/B4-frente.png" 
+                    class="B4" 
+                    alt="buzo" 
+                    onclick="abrirModalProducto('B4')">
+
                 <div class="product-txt">
                     <h3>Buzo 6</h3>
                     <p>mejor calidad</p>
                     <p class="precio">100000</p>
+
                     <a href="#" class="agregar-carrito btn-3"
                     data-id="6"
                     data-nombre="Buzo 6"
                     data-precio="100000"
-                    data-imagen="Buzos/buzo_blanco.png">
+                    data-imagen="Buzos/B4-frente.png">
                     Agregar
                     </a>
                 </div>
             </div>
 
 
+
             <div class="ofert-1">
-                <img src="Buzos/buzo_blanco.png" class="buzo-blanco" alt="buzo">
+                <img 
+                    src="Buzos/B6-frente.png" 
+                    class="B6" 
+                    alt="buzo" 
+                    onclick="abrirModalProducto('B6')">
+
                 <div class="product-txt">
                     <h3>Buzo 7</h3>
                     <p>mejor calidad</p>
                     <p class="precio">100000</p>
+
                     <a href="#" class="agregar-carrito btn-3"
                     data-id="7"
                     data-nombre="Buzo 7"
                     data-precio="100000"
-                    data-imagen="Buzos/buzo_blanco.png">
+                    data-imagen="Buzos/B6-frente.png">
                     Agregar
                     </a>
                 </div>
             </div>
 
 
+
             <div class="ofert-1">
-                <img src="Buzos/buzo_blanco.png" class="buzo-blanco" alt="buzo">
+                <img 
+                    src="Buzos/B7-frente.png" 
+                    class="B7" 
+                    alt="buzo" 
+                    onclick="abrirModalProducto('B7')">
+
                 <div class="product-txt">
                     <h3>Buzo 8</h3>
                     <p>mejor calidad</p>
                     <p class="precio">100000</p>
+
                     <a href="#" class="agregar-carrito btn-3"
                     data-id="8"
                     data-nombre="Buzo 8"
                     data-precio="100000"
-                    data-imagen="Buzos/buzo_blanco.png">
+                    data-imagen="Buzos/B7-frente.png">
                     Agregar
                     </a>
                 </div>
             </div>
+
 
             <div class="ofert-1 locked">
                 <img src="images/candado.png" alt="bloqueado">
@@ -460,8 +526,88 @@ if (isset($_SESSION['id_usuario'])) {
 
     <div id="toast"></div>
 
+    <!-- Modal de Producto -->
+    <div id="modal-producto" class="modal-producto oculto">
+    <div class="contenido-modal">
+        <span class="cerrar-modal" onclick="cerrarModalProducto()">X</span>
+        <img id="imagen-modal" src="" alt="Producto ampliado">
+        
+        <div class="botones-modal">
+        <button onclick="cambiarImagen()">Ver Reverso</button>
+        <button onclick="zoomImagen()">Zoom</button>
+        </div>
+    </div>
+    </div>
+
+
     
 
+<script>
+  let productoActual = "";
+  let imagenActual = "frente";
+  let zoomActivo = false;
+
+  function abrirModalProducto(nombreProducto) {
+    productoActual = nombreProducto;
+    imagenActual = "frente";
+    zoomActivo = false;
+
+    const modal = document.getElementById("modal-producto");
+    const imagen = document.getElementById("imagen-modal");
+
+    imagen.src = `Buzos/${productoActual}-frente.png`;
+    imagen.style.transform = "scale(1)";
+    imagen.style.cursor = "zoom-in";
+    modal.classList.remove("oculto");
+  }
+
+  function cerrarModalProducto() {
+    const modal = document.getElementById("modal-producto");
+    const imagen = document.getElementById("imagen-modal");
+    zoomActivo = false;
+    imagen.style.transform = "scale(1)";
+    imagen.style.cursor = "zoom-in";
+    modal.classList.add("oculto");
+  }
+
+  function cambiarImagen() {
+    const imagen = document.getElementById("imagen-modal");
+
+    if (imagenActual === "frente") {
+      imagen.src = `Buzos/${productoActual}-reves.png`;
+      imagenActual = "reves";
+    } else {
+      imagen.src = `Buzos/${productoActual}-frente.png`;
+      imagenActual = "frente";
+    }
+
+    zoomActivo = false;
+    imagen.style.transform = "scale(1)";
+    imagen.style.cursor = "zoom-in";
+  }
+
+  function zoomImagen() {
+    const imagen = document.getElementById("imagen-modal");
+
+    if (!zoomActivo) {
+      imagen.style.transform = "scale(2)";
+      imagen.style.cursor = "zoom-out";
+      zoomActivo = true;
+    } else {
+      imagen.style.transform = "scale(1)";
+      imagen.style.cursor = "zoom-in";
+      zoomActivo = false;
+    }
+  }
+
+  // Permitir zoom también al hacer clic directamente en la imagen
+  document.addEventListener("DOMContentLoaded", () => {
+    const imagen = document.getElementById("imagen-modal");
+    if (imagen) {
+      imagen.addEventListener("click", zoomImagen);
+    }
+  });
+</script>
 
 
 

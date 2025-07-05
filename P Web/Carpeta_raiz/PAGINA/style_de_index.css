@@ -777,7 +777,7 @@ object-fit: cover;
   top: 50%;
   left: 0;
   transform: translateY(-50%);
-  width: 220px; /* ajusta según tamaño de la imagen */
+  width: 230px; /* ajusta según tamaño de la imagen */
   height: auto;
   z-index: 9999;
   pointer-events: none; /* hace que no bloquee otros clics si lo deseas */
@@ -791,7 +791,7 @@ object-fit: cover;
 
 .saludo-en-nube {
   position: absolute;
-  top: 35%;
+  top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   color: white;
@@ -904,6 +904,74 @@ object-fit: cover;
   color: #333;
 }
 
+/* ===== Modal de Producto ===== */
+.modal-producto {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-producto.oculto {
+  display: none;
+}
+
+.contenido-modal {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  max-width: 500px;
+  width: 90%;
+  text-align: center;
+  position: relative;
+  z-index: 5;
+}
+
+.contenido-modal img {
+  width: 100%;
+  max-height: 400px;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+  cursor: zoom-in;
+}
+
+.cerrar-modal {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 28px;
+  font-weight: bold;
+  color: #333;
+  cursor: pointer;
+  z-index: 10; /* Asegura que esté encima del zoom */
+}
+
+
+.botones-modal {
+  margin-top: 15px;
+}
+
+.botones-modal button {
+  margin: 5px;
+  padding: 10px 20px;
+  border: none;
+  background-color: #111;
+  color: white;
+  font-weight: bold;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.botones-modal button:hover {
+  background-color: #444;
+}
 
 
 
@@ -1199,6 +1267,17 @@ display: none;
 position: relative;
 display: inline-block;
 }
+
+.carrito-wrapper a {
+  margin-right: 25px; /* 🔥 Solo la tarjeta se aleja del carrito */
+}
+
+.carrito-wrapper img {
+    width: 30px;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
 
 .contador {
 position: absolute;
