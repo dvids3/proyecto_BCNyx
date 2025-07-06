@@ -27,7 +27,7 @@ while ($row = mysqli_fetch_assoc($resultado)) {
 <head>
   <meta charset="UTF-8">
   <title>Confirmar y Pagar</title>
-  <link rel="stylesheet" href="estilos/pago.css">
+  <link rel="stylesheet" href="style_pago.css">
 </head>
 <body>
   <h1>Resumen de Compra</h1>

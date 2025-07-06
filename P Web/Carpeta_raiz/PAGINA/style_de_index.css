@@ -422,12 +422,6 @@ font-weight: bold;
 text-decoration: none;
 }
 
-
-.logo-sticky.visible {
-opacity: 1;
-pointer-events: auto;
-}
-
 .danger-tape {
 position: absolute;
 bottom: 0;

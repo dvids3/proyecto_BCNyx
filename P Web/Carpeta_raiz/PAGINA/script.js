@@ -20,6 +20,20 @@ function comprarElemento(e) {
     leerDatosElemento(elemento);
   }
 }
+document.getElementById("btn-comprar").addEventListener("click", (e) => {
+  e.preventDefault();
+
+  const productos = document.querySelectorAll("#lista-carrito tbody tr");
+
+  if (productos.length === 0) {
+    mostrarPopup("Tu carrito está vacío");
+    return;
+  }
+
+  // Redirige a la página de pago
+  window.location.href = "pago.php";
+});
+
 
 
 function leerDatosElemento(elemento) {
