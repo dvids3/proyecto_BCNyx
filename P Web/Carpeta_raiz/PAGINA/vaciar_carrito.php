@@ -15,3 +15,4 @@ if (isset($_SESSION['id_usuario'])) {
     echo "no_session";
 }
 ?>
+

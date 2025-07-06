@@ -20,20 +20,20 @@ if (isset($_SESSION['id_usuario'])) {
 </head>
 
 <body id="top">
-<div id="logoSticky" class="logo-sticky">
-    <div class="sticky-left">
-        <a href="#top" class="inicio-btn">INICIO</a>
-    </div>
-    <div class="sticky-center">
-        <div class="logo-text">BC NYX</div>
-    </div>
-    <div class="sticky-right">
-        <div class="carrito-wrapper">
-            <img src="images/carr.svg" id="img-carrito-sticky" alt="carrito">
-            <span id="contador-carrito-sticky" class="contador">0</span>
+    <div id="logoSticky" class="logo-sticky">
+        <div class="sticky-left">
+            <a href="#top" class="inicio-btn">INICIO</a>
+        </div>
+        <div class="sticky-center">
+            <div class="logo-text">BC NYX</div>
+        </div>
+        <div class="sticky-right">
+            <div class="carrito-wrapper">
+                <img src="images/carr.svg" id="img-carrito-sticky" alt="carrito">
+                <span id="contador-carrito-sticky" class="contador">0</span>
+            </div>
         </div>
     </div>
-</div>
 
     <div id="info-modal" class="info-modal oculto">
         <div class="info-modal-content">
