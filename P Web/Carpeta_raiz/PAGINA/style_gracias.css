@@ -1,3 +1,6 @@
+/*Toda la pagina*/
+@import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap');
+
 /* === RESET === */
 * {
   margin: 0;
@@ -22,7 +25,7 @@
 
 /* === BODY === */
 body {
-  font-family: 'Segoe UI', sans-serif;
+  font-family: "Urbanist", sans-serif;
   height: 100vh;
   display: flex;
   align-items: center;

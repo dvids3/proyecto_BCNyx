@@ -21,7 +21,7 @@ $stmt->close();
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Mi Perfil</title>
+    <title>Tu Perfil</title>
     <link rel="stylesheet" href="style_perfil.css">
 </head>
 <body>

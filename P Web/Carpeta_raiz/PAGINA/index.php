@@ -37,11 +37,32 @@ if (isset($_SESSION['id_usuario'])) {
 
     <div id="info-modal" class="info-modal oculto">
         <div class="info-modal-content">
-          <span id="cerrar-info-modal" class="cerrar-info">X</span>
-          <img src="images/sol_.png" alt="Información">
-          <div id="info-texto" class="info-texto"></div>
+            <span id="cerrar-info-modal" class="cerrar-info">X</span>
+
+            <div class="info-item activo">
+            <div class="info-texto">Texto para la primera imagen</div>
+            <img src="images/sol_.png" alt="imagen 1">           
+            </div>
+
+            <div class="info-item">
+            <div class="info-texto">Texto para la segunda imagen</div>
+            <img src="images/sol__.png" alt="imagen 2">
+            </div>
+
+            <div class="info-item">
+            <div class="info-texto">Texto para la tercera imagen</div>
+            <img src="images/sol___.png" alt="imagen 3">
+            </div>
+
+            <!-- ✅ Nuevo contenedor para flechas -->
+            <div class="botones-navegacion">
+            <button id="prev-info" class="nav-info">&lt;</button>
+            <button id="next-info" class="nav-info">&gt;</button>
+            </div>
         </div>
-    </div>  
+    </div>
+
+ 
       
     
     <header class="header">                  
@@ -200,23 +221,21 @@ if (isset($_SESSION['id_usuario'])) {
             </div>
 
             <div class="logan-1">
-                <h3>Hoodies</h3>
+                <h3>Rels B (Skinny Flakk)</h3>
                 <p>
                     -----------------
                 </p>
-                <a href="#" class="btn-2 abrir-info" data-texto="Materiales: Estos son los materiales de los buzos
-                <br>Elaboracion: Esta es la elaboracion de los buzos
-                <br>">Información</a>
+                <a href="#" class="btn-2 abrir-info">Información</a>
             </div>
         </div>
 
         <div class="oferts-content">
-                <div class="logan-1">
-                    <h3>Buzos</h3>
+                <div class="logan-2">
+                    <h3>Xxx Tentación</h3>
                     <p>
                     ------------
                     </p>
-                    <a href="#" class="btn-2 abrir-info" data-texto="Este es el texto para HOODIES">Información</a>
+                    <a href="#" class="btn-2 abrir-info">Información</a>
                 </div>
 
             <div class="ofert-1">
@@ -421,9 +440,6 @@ if (isset($_SESSION['id_usuario'])) {
 
     <section class="bloog container">
         <h2>Noticias</h2>
-        <p>
-            Las Noticias
-        </p>
         <div class="bloog-content">
 
             <div class="bloog-1">
@@ -613,51 +629,55 @@ if (isset($_SESSION['id_usuario'])) {
 
 
 <script>
-  const nube = document.getElementById("saludo-flotante");
-  let isDragging = false;
-  let offsetX, offsetY;
+  document.addEventListener("DOMContentLoaded", () => {
+    const nube = document.getElementById("saludo-flotante");
+    if (!nube) return; // Si no hay saludo, no hace nada
 
+    let isDragging = false;
+    let offsetX, offsetY;
 
-  nube.addEventListener("mousedown", (e) => {
-    isDragging = true;
-    offsetX = e.clientX - nube.getBoundingClientRect().left;
-    offsetY = e.clientY - nube.getBoundingClientRect().top;
-    nube.style.transition = "none";
-  });
+    nube.addEventListener("mousedown", (e) => {
+      isDragging = true;
+      offsetX = e.clientX - nube.getBoundingClientRect().left;
+      offsetY = e.clientY - nube.getBoundingClientRect().top;
+      nube.style.transition = "none";
+    });
 
-  document.addEventListener("mousemove", (e) => {
-    if (isDragging) {
-      nube.style.left = `${e.clientX - offsetX}px`;
-      nube.style.top = `${e.clientY - offsetY}px`;
-      nube.style.transform = "none";
-    }
-  });
+    document.addEventListener("mousemove", (e) => {
+      if (isDragging) {
+        nube.style.left = `${e.clientX - offsetX}px`;
+        nube.style.top = `${e.clientY - offsetY}px`;
+        nube.style.transform = "none";
+      }
+    });
 
-  document.addEventListener("mouseup", () => {
-    isDragging = false;
-  });
+    document.addEventListener("mouseup", () => {
+      isDragging = false;
+    });
 
-  nube.addEventListener("touchstart", (e) => {
-    isDragging = true;
-    const touch = e.touches[0];
-    offsetX = touch.clientX - nube.getBoundingClientRect().left;
-    offsetY = touch.clientY - nube.getBoundingClientRect().top;
-    nube.style.transition = "none";
-  });
-
-  document.addEventListener("touchmove", (e) => {
-    if (isDragging) {
+    nube.addEventListener("touchstart", (e) => {
+      isDragging = true;
       const touch = e.touches[0];
-      nube.style.left = `${touch.clientX - offsetX}px`;
-      nube.style.top = `${touch.clientY - offsetY}px`;
-      nube.style.transform = "none";
-    }
-  });
+      offsetX = touch.clientX - nube.getBoundingClientRect().left;
+      offsetY = touch.clientY - nube.getBoundingClientRect().top;
+      nube.style.transition = "none";
+    });
 
-  document.addEventListener("touchend", () => {
-    isDragging = false;
+    document.addEventListener("touchmove", (e) => {
+      if (isDragging) {
+        const touch = e.touches[0];
+        nube.style.left = `${touch.clientX - offsetX}px`;
+        nube.style.top = `${touch.clientY - offsetY}px`;
+        nube.style.transform = "none";
+      }
+    });
+
+    document.addEventListener("touchend", () => {
+      isDragging = false;
+    });
   });
 </script>
+
 
 
 

@@ -16,14 +16,14 @@ $stmt->execute();
 $stmt->store_result();
 
 if ($stmt->num_rows !== 1) {
-    header("Location: iniciar.htm?error=id_usuario");
+    header("Location: login.htm?error=id_usuario");
     exit();
 }
 $stmt->bind_result($id_usuario, $nombre, $claveHash);
 $stmt->fetch();
 
 if (!password_verify($clave, $claveHash)) {
-    header("Location: iniciar.htm?error=clave");
+    header("Location: login.htm?error=clave");
     exit();
 }
 

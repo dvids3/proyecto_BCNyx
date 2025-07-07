@@ -20,19 +20,22 @@ function comprarElemento(e) {
     leerDatosElemento(elemento);
   }
 }
-document.getElementById("btn-comprar").addEventListener("click", (e) => {
-  e.preventDefault();
+const btnComprar = document.getElementById("btn-comprar");
 
-  const productos = document.querySelectorAll("#lista-carrito tbody tr");
+if (btnComprar) {
+  btnComprar.addEventListener("click", (e) => {
+    e.preventDefault();
 
-  if (productos.length === 0) {
-    mostrarPopup("Tu carrito está vacío");
-    return;
-  }
+    const productos = document.querySelectorAll("#lista-carrito tbody tr");
 
-  // Redirige a la página de pago
-  window.location.href = "pago.php";
-});
+    if (productos.length === 0) {
+      mostrarPopup("Tu carrito está vacío");
+      return;
+    }
+
+    window.location.href = "pago.php";
+  });
+}
 
 
 
@@ -248,8 +251,6 @@ window.addEventListener("scroll", actualizarLogoSticky);
       }
     });
 
-
-  
     cerrarModal.addEventListener("click", () => {
       modal.classList.add("oculto");
     });
@@ -261,30 +262,98 @@ window.addEventListener("scroll", actualizarLogoSticky);
     });
   });
 
-const botonesInfo = document.querySelectorAll('.abrir-info');
-const modalInfo = document.getElementById('info-modal');
-const texto = document.getElementById('info-texto');
-const cerrar = document.getElementById('cerrar-info-modal');
 
-botonesInfo.forEach(boton => {
+
+
+
+//sol de informacion y swipe para celular 
+document.addEventListener("DOMContentLoaded", () => {
+  const botonesInfo = document.querySelectorAll('.abrir-info');
+  const modalInfo = document.getElementById('info-modal');
+  const cerrar = document.getElementById('cerrar-info-modal');
+  const infoItems = document.querySelectorAll('.info-item');
+  const btnPrev = document.getElementById("prev-info");
+  const btnNext = document.getElementById("next-info");
+  const logoSticky = document.getElementById("logoSticky");
+
+  let indiceInfoActual = 0;
+
+  function mostrarInfoActual() {
+    infoItems.forEach((item, i) => {
+      item.classList.toggle("activo", i === indiceInfoActual);
+    });
+  }
+
+  // ✅ Abrir modal, ocultar sticky y bloquear scroll
+  botonesInfo.forEach(boton => {
     boton.addEventListener('click', e => {
-    e.preventDefault();
-    const textoBoton = boton.getAttribute('data-texto');
-    texto.innerHTML = textoBoton;
-
-    modalInfo.classList.remove('oculto');
-    logoSticky.classList.remove("visible");
-
+      e.preventDefault();
+      modalInfo.classList.remove('oculto');
+      document.body.classList.add('modal-abierto');
+      if (logoSticky) logoSticky.classList.remove("visible");
+      indiceInfoActual = 0;
+      mostrarInfoActual();
     });
   });
 
+  // ✅ Cerrar modal, restaurar scroll y validar sticky
+  cerrar.addEventListener('click', () => {
+    modalInfo.classList.add('oculto');
+    document.body.classList.remove('modal-abierto');
+    if (typeof actualizarLogoSticky === "function") {
+      actualizarLogoSticky();
+    }
+  });
 
-cerrar.addEventListener('click', () => {
-  modalInfo.classList.add('oculto');
-  actualizarLogoSticky(); 
+  // ✅ Botones para cambiar imagen
+  if (btnNext) {
+    btnNext.addEventListener("click", () => {
+      indiceInfoActual = (indiceInfoActual + 1) % infoItems.length;
+      mostrarInfoActual();
+    });
+  }
+
+  if (btnPrev) {
+    btnPrev.addEventListener("click", () => {
+      indiceInfoActual = (indiceInfoActual - 1 + infoItems.length) % infoItems.length;
+      mostrarInfoActual();
+    });
+  }
+
+  // ✅ Deslizar en celular
+  let touchStartX = 0;
+  let touchEndX = 0;
+
+  if (modalInfo) {
+    modalInfo.addEventListener("touchstart", (e) => {
+      touchStartX = e.changedTouches[0].screenX;
+    });
+
+    modalInfo.addEventListener("touchend", (e) => {
+      touchEndX = e.changedTouches[0].screenX;
+      manejarSwipe();
+    });
+  }
+
+  function manejarSwipe() {
+    const diferencia = touchStartX - touchEndX;
+
+    if (Math.abs(diferencia) > 50) {
+      if (diferencia > 0) {
+        btnNext?.click();
+      } else {
+        btnPrev?.click();
+      }
+    }
+  }
 });
-  
 
+
+
+
+
+
+// Modales para preguntas, sugerencias y nosotros
   const btnPregunta = document.getElementById("mostrar-pregunta");
   const modalPregunta = document.getElementById("modal-pregunta-box");
   const cerrarPregunta = document.querySelector(".cerrar-pregunta");
@@ -304,6 +373,11 @@ cerrar.addEventListener('click', () => {
     }
   });
 
+
+
+
+
+  // Modales para sugerencias y nosotros
   const btnSugerencias = document.getElementById("mostrar-sugerencias");
   const modalSugerencias = document.getElementById("modal-sugerencias-box");
   const cerrarSugerencias = document.querySelector(".cerrar-sugerencias");
@@ -325,6 +399,9 @@ cerrar.addEventListener('click', () => {
 
   
 
+
+
+// Modales para boton nosotros  
   const btnSomos = document.getElementById("mostrar-somos");
   const modalSomos = document.getElementById("modal-somos-box");
   const cerrarSomos = document.querySelector(".cerrar-somos");
@@ -345,6 +422,10 @@ cerrar.addEventListener('click', () => {
     });
   
 
+
+
+
+// Modales para politicas de privacidad
   const abrirPrivacidad = document.getElementById("abrir-privacidad");
   const modalPrivacidad = document.getElementById("modal-privacidad");
   const cerrarPrivacidad = document.querySelector(".cerrar-privacidad");
@@ -363,6 +444,11 @@ cerrar.addEventListener('click', () => {
       modalPrivacidad.style.display = "none";
     }
   });
+
+
+
+
+
 
   document.addEventListener("DOMContentLoaded", () => {
   const carritoSticky = document.getElementById("img-carrito-sticky");
@@ -396,6 +482,11 @@ cerrar.addEventListener('click', () => {
   actualizarContadorSticky();
 });
 
+
+
+
+
+
 function mostrarPopup(texto, tiempo = 2000) {
   const popup = document.getElementById("popup-mensaje");
   const textoPopup = document.getElementById("popup-texto");
@@ -409,3 +500,10 @@ function mostrarPopup(texto, tiempo = 2000) {
     popup.classList.add("popup-oculto");
   }, tiempo);
 }
+
+
+
+
+
+
+//swipe para celular

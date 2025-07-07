@@ -26,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $update = $conn->prepare("UPDATE usuarios SET clave = ? WHERE correo = ?");
         $update->bind_param("ss", $nueva, $correo);
         if ($update->execute()) {
-            $mensaje = "✅ Contraseña actualizada correctamente. <a href='iniciar.htm'>Inicia sesión</a>";
+            $mensaje = "✅ Contraseña actualizada correctamente. <a login.htm'>Inicia sesión</a>";
             $paso = 3;
         } else {
             $mensaje = "❌ Error al actualizar la contraseña.";
