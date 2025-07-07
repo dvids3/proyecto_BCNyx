@@ -1,0 +1,156 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair:ital,opsz,wght@0,5..1200,300..900;1,5..1200,300..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Urbanist", sans-serif;
+  background: linear-gradient(90deg, rgb(0 0 0) 0%, rgb(51 50 50) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  height: 1050px;
+}
+
+form {
+  background-image: url(images/bg.png);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 50px;
+  width: 420px;
+  height: auto;
+  text-align: center;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+form img {
+  width: 120px;
+  margin-bottom: 25px;
+}
+
+.input-container {
+  position: relative;
+  margin-bottom: 15px;
+}
+
+.input-container > i {
+  padding: 14px;
+  border-radius: 50%;
+  background: linear-gradient(90deg, rgb(51 50 50) 0%, rgb(0 0 0) 100%);
+  color: #ffffff;
+  position: absolute;
+  font-size: 22px;
+  top: 7px;
+  right: 8px;
+  pointer-events: none;
+  
+}
+
+/* INPUT STYLES */
+.input-container > input,
+.input-container > select {
+  width: 100%;
+  padding: 20px 40px 20px 40px;
+  border-radius: 35px;
+  border: 2px solid #000000;
+  outline: none;
+  font-size: 17px;
+  background-color: #ffffff;
+  color: #000000;
+}
+
+/* Consistencia en el diseño del SELECT */
+.input-container > select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+/* Botón */
+.btn {
+  background: linear-gradient(90deg, #ffffff 0%, rgb(255 255 255) 100%);
+  color: #000000;
+  padding: 20px 20px 20px 30px;
+  border-radius: 30px;
+  border: 0p;
+  outline: none;
+  font-size: 17px;
+  cursor: pointer;
+  width: 100%;
+  margin-top: 20px;
+  font-family: 'Playfair', sans-serif;
+}
+
+.perfil-container {
+  max-width: 400px; /* Más estrecho */
+  margin: auto;
+  background: #fff;
+  padding: 15px 10px; /* Menos espacio interno */
+  border-radius: 10px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.07);
+  font-size: 0.9rem; /* Texto más pequeño */
+}
+
+
+/* Placeholder */
+::placeholder {
+  color: #7f7f7f;
+  font-size: 17px;
+}
+
+/* Enlace */
+form a {
+  text-decoration: none;
+  color: #ffffff;
+  font-size: 17px;
+  margin-top: 10px;
+  display: block;
+}
+
+/* Validación */
+input:invalid,
+select:invalid {
+  border-bottom: 2px solid red;
+}
+
+.error {
+  color: red;
+  font-size: 12px;
+  margin-top: 5px;
+  display: block;
+}
+
+.select-estilizado {
+  width: 100%;
+  padding: 20px 20px;
+  border-radius: 35px;
+  border: 2px solid #f9bc60;
+  background-color: #ffffff;
+  color: #000000;
+  font-size: 17px;
+  margin-bottom: 25px;
+  outline: none;
+  font-family: 'Playfair', sans-serif;
+}
+
+
+
+/* Responsive */
+@media(max-width: 991px) {
+  body {
+    padding: 30px;
+  }
+
+  form {
+    width: 100%;
+    padding: 20px;
+    height: auto;
+  }
+}
+

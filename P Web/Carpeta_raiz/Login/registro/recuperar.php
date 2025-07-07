@@ -39,38 +39,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <!DOCTYPE html>
 <html lang="es">
 <head>
+    <link rel="stylesheet" href="style_recuperar.css">
     <meta charset="UTF-8">
     <title>Recuperar contraseña</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: #f2f2f2;
-            padding: 40px;
-        }
-        .recuperar-container {
-            max-width: 400px;
-            margin: auto;
-            background: white;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-        }
-        input, button {
-            width: 100%;
-            padding: 10px;
-            margin-top: 10px;
-        }
-        p {
-            margin-top: 20px;
-            text-align: center;
-        }
-        .mensaje {
-            margin-top: 15px;
-            font-weight: bold;
-            color: #333;
-            text-align: center;
-        }
-    </style>
+
 </head>
 <body>
 

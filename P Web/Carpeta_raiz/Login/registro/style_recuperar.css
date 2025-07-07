@@ -1,0 +1,84 @@
+@import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap');
+
+
+
+body {
+font-family: "Urbanist", sans-serif;
+background: linear-gradient(90deg, rgb(0 0 0) 0%, rgb(51 50 50) 100%);
+display: flex;
+align-items: center;
+justify-content: center;
+min-height: 70vh;
+height: 60px;
+padding: 40px;
+}
+.recuperar-container {
+max-width: 400px;
+margin: auto;
+background: rgb(255 255 255);
+padding: 30px;
+border-radius: 10px;
+box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+button {
+color:#000;
+width: 100%;
+padding: 8px;
+margin-top: 18px  
+}
+
+input {
+width: 44.5%;
+padding: 8px;
+color:#000000
+}
+
+h2 {
+text-align: center;
+}
+
+p {
+margin-top: 20px;
+text-align: center;
+}
+.mensaje {
+margin-top: 15px;
+font-weight: bold;
+color: rgb(0 0 0);
+text-align: center;
+}
+
+@media (max-width: 991px) {
+body {
+flex-direction: column;
+padding: 20px;
+height: auto;  
+}
+
+label {
+margin-bottom: 12px; 
+display: block; 
+}
+
+.recuperar-container {
+width: 100%;
+padding: 20px;
+border-radius: 20px;
+transform: scale(2.0);
+}
+
+input {
+width: 100%;
+box-sizing: border-box;
+}
+
+button {
+font-size: 16px;
+padding: 10px;
+}
+
+h2, p, .mensaje {
+font-size: 16px;
+}
+}
+

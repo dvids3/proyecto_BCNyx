@@ -17,7 +17,7 @@
   min-height: 100%;
   width: auto;
   height: auto;
-  transform: translate(-50%, -50%) scale(1); /* Ajusta según necesidad */
+  transform: translate(-50%, -50%) scale(1.2); /* Ajusta según necesidad */
   object-fit: cover;
   z-index: -1;
   filter: brightness(0.6);
