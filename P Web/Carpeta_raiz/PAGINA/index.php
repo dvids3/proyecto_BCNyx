@@ -443,7 +443,7 @@ if (isset($_SESSION['id_usuario'])) {
         <div class="bloog-content">
 
             <div class="bloog-1">
-            <video src="videos/preguntas.mp4" autoplay muted loop playsinline></video>
+            <video src="videos/mini_video1.mp4" autoplay muted loop playsinline></video>
                 <div class="bloog-txt">
                     <p>Preguntas Frecuentes</p>
                     <a href="#" class="btn-4" id="mostrar-pregunta">Preguntar</a>
@@ -460,7 +460,7 @@ if (isset($_SESSION['id_usuario'])) {
 
 
             <div class="bloog-1">
-            <video src="videos/preguntas.mp4" autoplay muted loop playsinline></video>
+            <video src="videos/mini_video2.mp4" autoplay muted loop playsinline></video>
                 <div class="bloog-txt">
                     <p>¿Algúna idea?</p>
                     <a href="#" class="btn-4" id="mostrar-sugerencias">Dinoslo</a>
@@ -477,7 +477,7 @@ if (isset($_SESSION['id_usuario'])) {
 
     
             <div class="bloog-1">
-            <video src="videos/preguntas.mp4" autoplay muted loop playsinline></video>
+            <video src="videos/mini_video3.mp4" autoplay muted loop playsinline></video>
                 <div class="bloog-txt">
                     <p>¿Quiénes somos?</p>
                     <a href="#" class="btn-4" id="mostrar-somos">Somos...</a>

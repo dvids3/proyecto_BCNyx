@@ -335,6 +335,8 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+
+  
   function manejarSwipe() {
     const diferencia = touchStartX - touchEndX;
 

@@ -1083,10 +1083,10 @@ object-fit: cover;
 
 .contenido-modal {
   background-color: #fff;
-  padding: 20px;
+  padding: 80px;
   border-radius: 12px;
   max-width: 500px;
-  width: 90%;
+  width: 30%;
   text-align: center;
   position: relative;
   z-index: 5;
@@ -1106,7 +1106,7 @@ object-fit: cover;
   right: 15px;
   font-size: 28px;
   font-weight: bold;
-  color: #333;
+  color: #000000;
   cursor: pointer;
   z-index: 10; /* Asegura que esté encima del zoom */
 }
@@ -1419,7 +1419,7 @@ z-index: 9999;
 }
 
 .modal-content {
-background-color: #001e1d;
+background-color: #000000;
 color: #fffffe;
 padding: 30px 20px;
 border-radius: 15px;
@@ -1436,13 +1436,14 @@ position: absolute;
 top: 15px;
 right: 20px;
 font-size: 24px;
-color: #f9bc60;
+color: #000000;
 cursor: pointer;
 }
 
 .modal h2 {
 margin-bottom: 15px;
 text-align: center;
+color: #ffffff;
 }
 
 .modal .btn-2 {
@@ -1475,7 +1476,7 @@ display: inline-block;
 position: absolute;
 top: -8px;
 right: -8px;
-background-color: #f9bc60;
+background-color: #ffffff;
 color: #001e1d;
 font-weight: bold;
 font-size: 14px;
