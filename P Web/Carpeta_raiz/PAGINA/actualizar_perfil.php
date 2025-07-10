@@ -22,7 +22,7 @@ $stmt->close();
 <head>
     <meta charset="UTF-8">
     <title>Mi Perfil</title>
-    <link rel="stylesheet" href="css/perfil.css">
+    <link rel="stylesheet" href="style_perfil.css">
     <script>
         function mostrarFormulario() {
             document.getElementById("form-editar").style.display = "block";
@@ -39,7 +39,6 @@ $stmt->close();
 <?php endif; ?>
 
 <div class="perfil-container">
-
     <h2>Mi Perfil</h2>
 
     <!-- Vista de datos -->
@@ -58,24 +57,42 @@ $stmt->close();
     </div>
 
     <!-- Formulario oculto inicialmente -->
-    <form id="form-editar" action="actualizar_perfil.php" method="POST" style="display: none;">
+    <form id="form-editar" action="procesar_actualizacion.php" method="POST" style="display: none;">
         <label>Nombre:</label>
-        <input type="text" name="nombre" value="<?php echo htmlspecialchars($nombre); ?>">
+        <input type="text" name="nombre" value="<?php echo htmlspecialchars($nombre); ?>" required>
 
         <label>Apellidos:</label>
-        <input type="text" name="apellidos" value="<?php echo htmlspecialchars($apellidos); ?>">
+        <input type="text" name="apellidos" value="<?php echo htmlspecialchars($apellidos); ?>" required>
 
         <label>Correo:</label>
-        <input type="email" name="correo" value="<?php echo htmlspecialchars($correo); ?>">
+        <input type="email" name="correo" value="<?php echo htmlspecialchars($correo); ?>" required>
 
         <label>Teléfono:</label>
-        <input type="text" name="telefono" value="<?php echo htmlspecialchars($telefono); ?>">
+        <input type="text" name="telefono" value="<?php echo htmlspecialchars($telefono); ?>" required>
 
         <label>Tipo de documento:</label>
-        <input type="number" name="tipo_documento" value="<?php echo htmlspecialchars($tipo_documento); ?>">
+        <select name="tipo_documento" required>
+            <option value="">Seleccione...</option>
+            <option value="Cédula" <?php if ($tipo_documento == 'Cédula') echo 'selected'; ?>>Cédula</option>
+            <option value="Tarjeta de identidad" <?php if ($tipo_documento == 'Tarjeta de identidad') echo 'selected'; ?>>Tarjeta de identidad</option>
+            <option value="Otro" <?php if ($tipo_documento == 'Otro') echo 'selected'; ?>>Otro</option>
+        </select>
 
         <label>Número de documento:</label>
-        <input type="text" name="documento" value="<?php echo htmlspecialchars($documento); ?>">
+        <input type="text" name="documento" value="<?php echo htmlspecialchars($documento); ?>" required>
 
         <label>País:</label>
-        <input type="text" name="pai
+        <input type="text" name="pais" value="<?php echo htmlspecialchars($pais); ?>" required>
+
+        <label>Departamento:</label>
+        <input type="text" name="departamento" value="<?php echo htmlspecialchars($departamento); ?>" required>
+
+        <label>Ciudad:</label>
+        <input type="text" name="ciudad" value="<?php echo htmlspecialchars($ciudad); ?>" required>
+
+        <button type="submit">Guardar cambios</button>
+    </form>
+</div>
+
+</body>
+</html>

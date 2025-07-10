@@ -90,6 +90,15 @@ function actualizarContador() {
   }
   
 
+
+function actualizarContadoresGlobal() {
+  actualizarContador();
+  actualizarContadorSticky();
+}
+
+
+
+
 function eliminarElemento(e) {
   e.preventDefault();
 
@@ -451,8 +460,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-
-  document.addEventListener("DOMContentLoaded", () => {
+//carrito 
+document.addEventListener("DOMContentLoaded", () => {
   const carritoSticky = document.getElementById("img-carrito-sticky");
   const contadorSticky = document.getElementById("contador-carrito-sticky");
 
@@ -464,16 +473,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  const actualizarContadorSticky = () => {
-    const lista = document.querySelector("#lista-carrito tbody");
-    const totalItems = lista.querySelectorAll("tr").length;
-    if (totalItems > 0) {
-      contadorSticky.textContent = totalItems;
-      contadorSticky.style.display = "inline-block";
-    } else {
-      contadorSticky.style.display = "none";
-    }
-  };
 
   const observer = new MutationObserver(actualizarContadorSticky);
   const lista = document.querySelector("#lista-carrito tbody");
@@ -485,7 +484,22 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
+//actualiza el carrito del sticky
+function actualizarContadorSticky() {
+  const lista = document.querySelector("#lista-carrito tbody");
+  const contadorSticky = document.getElementById("contador-carrito-sticky");
 
+  if (!lista || !contadorSticky) return;
+
+  const totalItems = lista.querySelectorAll("tr").length;
+
+  if (totalItems > 0) {
+    contadorSticky.textContent = totalItems;
+    contadorSticky.style.display = "inline-block";
+  } else {
+    contadorSticky.style.display = "none";
+  }
+}
 
 
 
@@ -508,4 +522,229 @@ function mostrarPopup(texto, tiempo = 2000) {
 
 
 
-//swipe para celular
+//zoom a las imagenes de los productos
+  let productoActual = "";
+  let imagenActual = "frente";
+  let zoomActivo = false;
+
+  function abrirModalProducto(nombreProducto) {
+    productoActual = nombreProducto;
+    imagenActual = "frente";
+    zoomActivo = false;
+
+    const modal = document.getElementById("modal-producto");
+    const imagen = document.getElementById("imagen-modal");
+
+    imagen.src = `Buzos/${productoActual}-frente.png`;
+    imagen.style.transform = "scale(1)";
+    imagen.style.cursor = "zoom-in";
+    modal.classList.remove("oculto");
+  }
+
+  function cerrarModalProducto() {
+    const modal = document.getElementById("modal-producto");
+    const imagen = document.getElementById("imagen-modal");
+    zoomActivo = false;
+    imagen.style.transform = "scale(1)";
+    imagen.style.cursor = "zoom-in";
+    modal.classList.add("oculto");
+  }
+
+  function cambiarImagen() {
+    const imagen = document.getElementById("imagen-modal");
+
+    if (imagenActual === "frente") {
+      imagen.src = `Buzos/${productoActual}-reves.png`;
+      imagenActual = "reves";
+    } else {
+      imagen.src = `Buzos/${productoActual}-frente.png`;
+      imagenActual = "frente";
+    }
+
+    zoomActivo = false;
+    imagen.style.transform = "scale(1)";
+    imagen.style.cursor = "zoom-in";
+  }
+
+  function zoomImagen() {
+    const imagen = document.getElementById("imagen-modal");
+
+    if (!zoomActivo) {
+      imagen.style.transform = "scale(2)";
+      imagen.style.cursor = "zoom-out";
+      zoomActivo = true;
+    } else {
+      imagen.style.transform = "scale(1)";
+      imagen.style.cursor = "zoom-in";
+      zoomActivo = false;
+    }
+  }
+
+  // Permitir zoom también al hacer clic directamente en la imagen
+  document.addEventListener("DOMContentLoaded", () => {
+    const imagen = document.getElementById("imagen-modal");
+    if (imagen) {
+      imagen.addEventListener("click", zoomImagen);
+    }
+  });
+
+
+
+
+
+//saludo en la nube
+  document.addEventListener("DOMContentLoaded", () => {
+    const nube = document.getElementById("saludo-flotante");
+    if (!nube) return; // Si no hay saludo, no hace nada
+
+    let isDragging = false;
+    let offsetX, offsetY;
+
+    nube.addEventListener("mousedown", (e) => {
+      isDragging = true;
+      offsetX = e.clientX - nube.getBoundingClientRect().left;
+      offsetY = e.clientY - nube.getBoundingClientRect().top;
+      nube.style.transition = "none";
+    });
+
+    document.addEventListener("mousemove", (e) => {
+      if (isDragging) {
+        nube.style.left = `${e.clientX - offsetX}px`;
+        nube.style.top = `${e.clientY - offsetY}px`;
+        nube.style.transform = "none";
+      }
+    });
+
+    document.addEventListener("mouseup", () => {
+      isDragging = false;
+    });
+
+    nube.addEventListener("touchstart", (e) => {
+      isDragging = true;
+      const touch = e.touches[0];
+      offsetX = touch.clientX - nube.getBoundingClientRect().left;
+      offsetY = touch.clientY - nube.getBoundingClientRect().top;
+      nube.style.transition = "none";
+    });
+
+    document.addEventListener("touchmove", (e) => {
+      if (isDragging) {
+        const touch = e.touches[0];
+        nube.style.left = `${touch.clientX - offsetX}px`;
+        nube.style.top = `${touch.clientY - offsetY}px`;
+        nube.style.transform = "none";
+      }
+    });
+
+    document.addEventListener("touchend", () => {
+      isDragging = false;
+    });
+  });
+
+
+
+
+
+
+
+//cierra la sesion
+function confirmarCerrarSesion() {
+  document.getElementById("modal-cerrar-sesion").style.display = "flex";
+}
+
+function cerrarModal() {
+  document.getElementById("modal-cerrar-sesion").style.display = "none";
+}
+
+function cerrarSesion() {
+  window.location.href = "../Login/registro/logout.php";
+}
+
+
+
+
+
+//ventana de cerrar sesion
+function cerrarModalSesion() {
+  document.getElementById("modal-sesion").style.display = "none";
+}
+
+function irARegistro() {
+  window.location.href = "../Login/registro/registro.htm";
+}
+
+
+
+
+
+
+
+
+//ventana flotante del carrito
+document.addEventListener('click', function(e) {
+  if (e.target.classList.contains('agregar-carrito')) {
+    const boton = e.target;
+
+    // Obtener datos
+    const id_producto = boton.getAttribute('data-id');
+    const nombre_producto = boton.getAttribute('data-nombre');
+    const precio = boton.getAttribute('data-precio');
+    const imagen = boton.getAttribute('data-imagen');
+
+    fetch('agregar_al_carrito.php', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: `id_producto=${id_producto}&nombre_producto=${encodeURIComponent(nombre_producto)}&precio=${precio}&imagen=${encodeURIComponent(imagen)}`
+    })
+    .then(res => res.text())
+    .then(res => {
+      console.log("Respuesta servidor:", res); // Debug
+
+      if (res && res.includes("Producto agregado")) {
+        mostrarToast("Producto añadido al carrito");
+
+        // Recargar lista del carrito
+        fetch("mostrar_carrito.php")
+          .then(r => r.text())
+          .then(html => {
+            const lista = document.querySelector("#lista-carrito tbody");
+            lista.innerHTML = html;
+
+            // ✅ actualizar ambos contadores desde base de datos         
+            actualizarContadoresGlobal();
+          });
+      }
+    });
+  }
+});
+
+
+
+
+
+//comprar
+document.getElementById('comprar-carrito').addEventListener('click', function(e) {
+  e.preventDefault();
+  window.location.href = 'comprar_carrito.php';
+});
+
+
+
+
+
+//toast de agregado
+function mostrarToast(mensaje, duracion = 2500) {
+  const toast = document.getElementById('toast');
+  toast.textContent = mensaje;
+  toast.style.display = 'block';
+  toast.style.opacity = 1;
+
+  setTimeout(() => {
+    toast.style.opacity = 0;
+    setTimeout(() => {
+      toast.style.display = 'none';
+    }, 300);
+  }, duracion);
+}
+
+

@@ -41,13 +41,13 @@ thead {
 
 thead th {
   padding: 14px;
-  font-size: 15px;
+  font-size: 21px;
   text-align: left;
 }
 
 tbody td {
   padding: 14px;
-  font-size: 14px;
+  font-size: 20px;
   border-bottom: 1px solid #eee;
   vertical-align: middle;
 }
@@ -75,12 +75,12 @@ table img {
 
 /* --- BOTÓN ELIMINAR --- */
 .eliminar-producto {
-  padding: 6px 12px;
+  padding: 20px 12px;
   background-color: #e74c3c;
   color: #fff;
   border: none;
   border-radius: 6px;
-  font-size: 14px;
+  font-size: 16px;
   cursor: pointer;
   transition: background 0.3s ease;
 }
@@ -98,7 +98,7 @@ form {
   display: flex;
   flex-direction: column;
   gap: 15px;
-  width: 670px;
+  width: 700px;
 }
 
 form input,
@@ -130,6 +130,14 @@ form button {
 
 form button:hover {
   background: #333;
+}
+
+.imagen-producto {
+  width: 100%;
+  max-width: 200px;   /* no crece más que esto */
+  height: auto;
+  display: block;
+  margin: 0 auto;
 }
 
 /* --- RESPONSIVE --- */

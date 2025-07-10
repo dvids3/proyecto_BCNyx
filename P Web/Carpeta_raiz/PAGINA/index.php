@@ -123,7 +123,7 @@ if (isset($_SESSION['id_usuario'])) {
                                 <span id="contador-tarjeta" class="contador" style="display: none;">0</span>
                             </a>
 
-                             <a href="perfil.php">
+                             <a href="actualizar_perfil.php">
                                 <img src="images/perfil.svg" alt="Perfil">
                             </a>
 
@@ -297,7 +297,7 @@ if (isset($_SESSION['id_usuario'])) {
                 <a href="#" class="btn-1">informacion</a>
             </div>
             <div class="promotion-img">
-                    <img src="images/r1.png" alt="Imagen">
+                    <img src="images/404.jpg" alt="Imagen">
             </div>
         </div>
     </section>
@@ -555,235 +555,13 @@ if (isset($_SESSION['id_usuario'])) {
     </div>
     </div>
 
-
-    
-
-<script>
-  let productoActual = "";
-  let imagenActual = "frente";
-  let zoomActivo = false;
-
-  function abrirModalProducto(nombreProducto) {
-    productoActual = nombreProducto;
-    imagenActual = "frente";
-    zoomActivo = false;
-
-    const modal = document.getElementById("modal-producto");
-    const imagen = document.getElementById("imagen-modal");
-
-    imagen.src = `Buzos/${productoActual}-frente.png`;
-    imagen.style.transform = "scale(1)";
-    imagen.style.cursor = "zoom-in";
-    modal.classList.remove("oculto");
-  }
-
-  function cerrarModalProducto() {
-    const modal = document.getElementById("modal-producto");
-    const imagen = document.getElementById("imagen-modal");
-    zoomActivo = false;
-    imagen.style.transform = "scale(1)";
-    imagen.style.cursor = "zoom-in";
-    modal.classList.add("oculto");
-  }
-
-  function cambiarImagen() {
-    const imagen = document.getElementById("imagen-modal");
-
-    if (imagenActual === "frente") {
-      imagen.src = `Buzos/${productoActual}-reves.png`;
-      imagenActual = "reves";
-    } else {
-      imagen.src = `Buzos/${productoActual}-frente.png`;
-      imagenActual = "frente";
-    }
-
-    zoomActivo = false;
-    imagen.style.transform = "scale(1)";
-    imagen.style.cursor = "zoom-in";
-  }
-
-  function zoomImagen() {
-    const imagen = document.getElementById("imagen-modal");
-
-    if (!zoomActivo) {
-      imagen.style.transform = "scale(2)";
-      imagen.style.cursor = "zoom-out";
-      zoomActivo = true;
-    } else {
-      imagen.style.transform = "scale(1)";
-      imagen.style.cursor = "zoom-in";
-      zoomActivo = false;
-    }
-  }
-
-  // Permitir zoom también al hacer clic directamente en la imagen
-  document.addEventListener("DOMContentLoaded", () => {
-    const imagen = document.getElementById("imagen-modal");
-    if (imagen) {
-      imagen.addEventListener("click", zoomImagen);
-    }
-  });
-</script>
-
-
-
-
-<script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const nube = document.getElementById("saludo-flotante");
-    if (!nube) return; // Si no hay saludo, no hace nada
-
-    let isDragging = false;
-    let offsetX, offsetY;
-
-    nube.addEventListener("mousedown", (e) => {
-      isDragging = true;
-      offsetX = e.clientX - nube.getBoundingClientRect().left;
-      offsetY = e.clientY - nube.getBoundingClientRect().top;
-      nube.style.transition = "none";
-    });
-
-    document.addEventListener("mousemove", (e) => {
-      if (isDragging) {
-        nube.style.left = `${e.clientX - offsetX}px`;
-        nube.style.top = `${e.clientY - offsetY}px`;
-        nube.style.transform = "none";
-      }
-    });
-
-    document.addEventListener("mouseup", () => {
-      isDragging = false;
-    });
-
-    nube.addEventListener("touchstart", (e) => {
-      isDragging = true;
-      const touch = e.touches[0];
-      offsetX = touch.clientX - nube.getBoundingClientRect().left;
-      offsetY = touch.clientY - nube.getBoundingClientRect().top;
-      nube.style.transition = "none";
-    });
-
-    document.addEventListener("touchmove", (e) => {
-      if (isDragging) {
-        const touch = e.touches[0];
-        nube.style.left = `${touch.clientX - offsetX}px`;
-        nube.style.top = `${touch.clientY - offsetY}px`;
-        nube.style.transform = "none";
-      }
-    });
-
-    document.addEventListener("touchend", () => {
-      isDragging = false;
-    });
-  });
-</script>
-
-
-
-
-<script>
-function confirmarCerrarSesion() {
-  document.getElementById("modal-cerrar-sesion").style.display = "flex";
-}
-
-function cerrarModal() {
-  document.getElementById("modal-cerrar-sesion").style.display = "none";
-}
-
-function cerrarSesion() {
-  window.location.href = "../Login/registro/logout.php";
-}
-</script>
-
-
-
-
-<script>
-  function cerrarModalSesion() {
-    document.getElementById("modal-sesion").style.display = "none";
-  }
-
-  function irARegistro() {
-    window.location.href = "../Login/registro/registro.htm";
-  }
-</script>
-
-
-
-<script>
-  const USUARIO_LOGUEADO = <?= isset($_SESSION['id_usuario']) ? 'true' : 'false' ?>;
-</script>
-
-
-
-<script>
-document.addEventListener('click', function(e) {
-  if (e.target.classList.contains('agregar-carrito')) {
-    const boton = e.target;
-
-    // Obtener datos
-    const id_producto = boton.getAttribute('data-id');
-    const nombre_producto = boton.getAttribute('data-nombre');
-    const precio = boton.getAttribute('data-precio');
-    const imagen = boton.getAttribute('data-imagen');
-
-    fetch('agregar_al_carrito.php', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: `id_producto=${id_producto}&nombre_producto=${encodeURIComponent(nombre_producto)}&precio=${precio}&imagen=${encodeURIComponent(imagen)}`
-    })
-    .then(res => res.text())
-    .then(res => {
-      console.log("Respuesta servidor:", res); // Debug
-
-      if (res && res.includes("Producto agregado")) {
-        mostrarToast("Producto añadido al carrito");
-
-        // Recargar lista del carrito
-        fetch("mostrar_carrito.php")
-          .then(r => r.text())
-          .then(html => {
-            const lista = document.querySelector("#lista-carrito tbody");
-            lista.innerHTML = html;
-
-            // ✅ actualizar ambos contadores desde base de datos
-            actualizarContadoresGlobal();
-          });
-      }
-    });
-  }
-});
-</script>
-
-
-
-
-<script>
-document.getElementById('comprar-carrito').addEventListener('click', function(e) {
-  e.preventDefault();
-  window.location.href = 'comprar_carrito.php';
-});
-</script>
-
-
-
-
-<script>
-function mostrarToast(mensaje, duracion = 2500) {
-  const toast = document.getElementById('toast');
-  toast.textContent = mensaje;
-  toast.style.display = 'block';
-  toast.style.opacity = 1;
-
-  setTimeout(() => {
-    toast.style.opacity = 0;
-    setTimeout(() => {
-      toast.style.display = 'none';
-    }, 300);
-  }, duracion);
-}
-</script>
-
 <script type="module" src="script.js"></script>
+
+
+<script>
+const USUARIO_LOGUEADO = <?= isset($_SESSION['id_usuario']) ? 'true' : 'false' ?>;
+</script>
+
+
 </body>
 </html>
