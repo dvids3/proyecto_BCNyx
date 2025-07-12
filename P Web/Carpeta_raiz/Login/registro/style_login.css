@@ -14,7 +14,7 @@ body {
   align-items: center;
   justify-content: center;
   min-height: 100vh;
-  height: -50px;
+  height: 105px;
 }
 
 form {
@@ -142,7 +142,7 @@ select:invalid {
 
 
 /* Responsive */
-@media(max-width: 991px) {
+@media(max-width: 768px) {
   body {
     padding: 30px;
   }

@@ -45,7 +45,7 @@ while ($row = mysqli_fetch_assoc($resultado)) {
     <tbody>
       <?php foreach ($productos as $p): ?>
         <tr>
-          <td><img src="<?= $p['imagen'] ?>" class="imagen-producto"></td>
+          <td><img src="<?= $p['imagen'] ?>" class="imagen-producto" alt="producto"></td>
           <td><?= $p['nombre_producto'] ?></td>
           <td>$<?= number_format($p['precio'], 0, ',', '.') ?></td>
           <td><?= $p['cantidad'] ?></td>

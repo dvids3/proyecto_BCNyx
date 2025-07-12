@@ -231,6 +231,7 @@ height: auto;
 border-radius: 20px;
 box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
 transition: transform 0.3s ease-in-out;
+margin-left: 60px;
 }
 
 .main-img:hover {
@@ -650,7 +651,7 @@ position: absolute;
 top: 10px;
 right: 20px;
 font-size: 1.5rem;
-color: white;
+color: rgb(0, 0, 0);
 cursor: pointer;
 z-index: 10;
 }
@@ -1082,7 +1083,7 @@ object-fit: cover;
 }
 
 .contenido-modal {
-  background-color: #fff;
+  background-color: #000000;
   padding: 80px;
   border-radius: 12px;
   max-width: 500px;
@@ -1108,7 +1109,7 @@ object-fit: cover;
   font-weight: bold;
   color: #000000;
   cursor: pointer;
-  z-index: 10; /* Asegura que esté encima del zoom */
+  z-index: 1000; /* Asegura que esté encima del zoom */
 }
 
 
@@ -1121,7 +1122,7 @@ object-fit: cover;
   padding: 10px 20px;
   border: none;
   background-color: #111;
-  color: white;
+  color: rgb(255, 255, 255);
   font-weight: bold;
   border-radius: 8px;
   cursor: pointer;
@@ -1134,40 +1135,64 @@ object-fit: cover;
 
 
 
-@media (max-width: 991px) {
+@media (max-width: 768px) {
 
 
+  .modal-overlay {
+    padding: 10px;
+    align-items: flex-start;
+  }
 
-.info-modal-content {
-flex-direction: column;
-align-items: center;
-}
+  .modal-contenido {
+    width: 95%;
+    max-width: none;
+    padding: 1.2rem;
+  }
 
-.botones-navegacion {
-display: flex;
-justify-content: center;
-gap: 30px;
-margin-top: 20px;
-}
+  .modal-contenido p {
+    font-size: 1rem;
+  }
 
-.nav-info {
-position: static;
-transform: none;
-font-size: 2rem;
-padding: 10px 20px;
-background-color: rgba(0, 0, 0, 0.4);
-color: white;
-border: none;
-border-radius: 5px;
-cursor: pointer;
-}
+  .modal-contenido .botones {
+    flex-direction: column;
+    gap: 10px;
+  }
 
-.info-item img {
-transform: scale(2.5);
-width: 90vw;
-max-height: 80vh;
-}
+  .modal-contenido .btn-si,
+  .modal-contenido .btn-no {
+    width: 100%;
+    padding: 0.8rem;
+    font-size: 1rem;
+  }
 
+  .modal-producto {
+    padding: 20px;
+    align-items: flex-start;
+  }
+
+  .contenido-modal {
+    width: 90%;
+    max-width: none;
+    padding: 30px 20px;
+    margin-top:230px;
+  }
+
+  .contenido-modal img {
+    max-height: 250px;
+  }
+
+  .cerrar-modal {
+    top: 8px;
+    right: 12px;
+    font-size: 24px;
+  }
+
+  .botones-modal button {
+    width: 100%;
+    padding: 12px;
+    margin: 8px 0;
+    font-size: 1rem;
+  }
 
 .nube-con-saludo {
 top: 10px;
@@ -1402,7 +1427,7 @@ transform: translateX(-56%);
 
 .promotion-img {
 width: 150px;
-}}
+}
 
 .modal {
 position: fixed;
@@ -1439,6 +1464,7 @@ font-size: 24px;
 color: #ffffff;
 cursor: pointer;
 }
+
 
 .modal h2 {
 margin-bottom: 15px;
@@ -1486,4 +1512,4 @@ text-align: center;
 line-height: 24px;
 border-radius: 50%;
 display: none;
-}
+}}

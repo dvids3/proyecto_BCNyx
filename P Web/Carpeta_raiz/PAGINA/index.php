@@ -41,7 +41,7 @@ if (isset($_SESSION['id_usuario'])) {
 
             <div class="info-item activo">
             <div class="info-texto">Texto para la primera imagen</div>
-            <img src="images/sol_.png" alt="imagen 1">           
+            <img src="images/Periódico_b.png" alt="imagen 1">           
             </div>
 
             <div class="info-item">
@@ -558,10 +558,79 @@ if (isset($_SESSION['id_usuario'])) {
 <script type="module" src="script.js"></script>
 
 
+
+
 <script>
 const USUARIO_LOGUEADO = <?= isset($_SESSION['id_usuario']) ? 'true' : 'false' ?>;
 </script>
 
 
+<script>
+//zoom a las imagenes de los productos
+  let productoActual = "";
+  let imagenActual = "frente";
+  let zoomActivo = false;
+
+  function abrirModalProducto(nombreProducto) {
+    productoActual = nombreProducto;
+    imagenActual = "frente";
+    zoomActivo = false;
+
+    const modal = document.getElementById("modal-producto");
+    const imagen = document.getElementById("imagen-modal");
+
+    imagen.src = `Buzos/${productoActual}-frente.png`;
+    imagen.style.transform = "scale(1)";
+    imagen.style.cursor = "zoom-in";
+    modal.classList.remove("oculto");
+  }
+
+  function cerrarModalProducto() {
+    const modal = document.getElementById("modal-producto");
+    const imagen = document.getElementById("imagen-modal");
+    zoomActivo = false;
+    imagen.style.transform = "scale(1)";
+    imagen.style.cursor = "zoom-in";
+    modal.classList.add("oculto");
+  }
+
+  function cambiarImagen() {
+    const imagen = document.getElementById("imagen-modal");
+
+    if (imagenActual === "frente") {
+      imagen.src = `Buzos/${productoActual}-reves.png`;
+      imagenActual = "reves";
+    } else {
+      imagen.src = `Buzos/${productoActual}-frente.png`;
+      imagenActual = "frente";
+    }
+
+    zoomActivo = false;
+    imagen.style.transform = "scale(1)";
+    imagen.style.cursor = "zoom-in";
+  }
+
+  function zoomImagen() {
+    const imagen = document.getElementById("imagen-modal");
+
+    if (!zoomActivo) {
+      imagen.style.transform = "scale(2)";
+      imagen.style.cursor = "zoom-out";
+      zoomActivo = true;
+    } else {
+      imagen.style.transform = "scale(1)";
+      imagen.style.cursor = "zoom-in";
+      zoomActivo = false;
+    }
+  }
+
+  // Permitir zoom también al hacer clic directamente en la imagen
+  document.addEventListener("DOMContentLoaded", () => {
+    const imagen = document.getElementById("imagen-modal");
+    if (imagen) {
+      imagen.addEventListener("click", zoomImagen);
+    }
+  });
+</script>
 </body>
 </html>

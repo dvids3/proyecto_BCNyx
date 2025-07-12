@@ -94,26 +94,8 @@ form button:hover {
   background-color: #333;
 }
 
-.btn-editar {
-  background-color: #004643;      /* Verde petróleo */
-  color: #ffffff;                 /* Texto blanco */
-  border: none;
-  padding: 10px 20px;
-  font-size: 16px;
-  font-family: 'Urbanist', sans-serif;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  margin-top: 20px;
-}
-
-.btn-editar:hover {
-  background-color: #006d5b;      /* Un tono más claro al pasar el mouse */
-}
-
-
 /* === RESPONSIVE === */
-@media (max-width: 991px) {
+@media (max-width: 768px) {
 .perfil-container {
   max-width: 700px;
   margin: 450px auto; /* 100px arriba y abajo, auto a los lados */
