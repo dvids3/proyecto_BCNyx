@@ -39,19 +39,17 @@ if (isset($_SESSION['id_usuario'])) {
         <div class="info-modal-content">
             <span id="cerrar-info-modal" class="cerrar-info">X</span>
 
+            <div class="info-item">
+            <img src="images/Inicio.png" alt="imagen 3">
+            </div>
+
+
             <div class="info-item activo">
-            <div class="info-texto">Texto para la primera imagen</div>
             <img src="images/Periódico_b.png" alt="imagen 1">           
             </div>
 
             <div class="info-item">
-            <div class="info-texto">Texto para la segunda imagen</div>
-            <img src="images/sol__.png" alt="imagen 2">
-            </div>
-
-            <div class="info-item">
-            <div class="info-texto">Texto para la tercera imagen</div>
-            <img src="images/sol___.png" alt="imagen 3">
+            <img src="images/Periódico_x.png" alt="imagen 2">
             </div>
 
             <!-- ✅ Nuevo contenedor para flechas -->
@@ -443,7 +441,7 @@ if (isset($_SESSION['id_usuario'])) {
         <div class="bloog-content">
 
             <div class="bloog-1">
-            <video src="videos/mini_video1.mp4" autoplay muted loop playsinline></video>
+                <video src="videos/mini_video1.mp4" autoplay muted loop playsinline></video>
                 <div class="bloog-txt">
                     <p>Preguntas Frecuentes</p>
                     <a href="#" class="btn-4" id="mostrar-pregunta">Preguntar</a>
@@ -545,7 +543,7 @@ if (isset($_SESSION['id_usuario'])) {
     <!-- Modal de Producto -->
     <div id="modal-producto" class="modal-producto oculto">
     <div class="contenido-modal">
-        <span class="cerrar-modal" onclick="cerrarModalProducto()">X</span>
+        <span class="cerrar-modal-zoom" onclick="cerrarModalProducto()">X</span>
         <img id="imagen-modal" src="" alt="Producto ampliado">
         
         <div class="botones-modal">
@@ -632,5 +630,24 @@ const USUARIO_LOGUEADO = <?= isset($_SESSION['id_usuario']) ? 'true' : 'false' ?
     }
   });
 </script>
+
+
+<script>
+//cierra la sesion
+function confirmarCerrarSesion() {
+  document.getElementById("modal-cerrar-sesion").style.display = "flex";
+}
+
+function cerrarModal() {
+  document.getElementById("modal-cerrar-sesion").style.display = "none";
+}
+
+function cerrarSesion() {
+  window.location.href = "../Login/registro/logout.php";
+}
+</script>
+
+
+
 </body>
 </html>

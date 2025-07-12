@@ -62,6 +62,13 @@ while ($row = mysqli_fetch_assoc($resultado)) {
     </tfoot>
   </table>
 
+  
+  <div class="imagen-video-checkout">
+    <video autoplay muted loop playsinline class="video-pago">
+      <source src="videos/caja_pago.mp4" type="video/mp4">
+    </video>
+  </div>
+
   <h2>Método de pago</h2>
   <form action="finalizar_pago.php" method="POST">
     <select name="metodo_pago" required>
