@@ -522,73 +522,6 @@ function mostrarPopup(texto, tiempo = 2000) {
 
 
 
-//zoom a las imagenes de los productos
-  let productoActual = "";
-  let imagenActual = "frente";
-  let zoomActivo = false;
-
-  function abrirModalProducto(nombreProducto) {
-    productoActual = nombreProducto;
-    imagenActual = "frente";
-    zoomActivo = false;
-
-    const modal = document.getElementById("modal-producto");
-    const imagen = document.getElementById("imagen-modal");
-
-    imagen.src = `Buzos/${productoActual}-frente.png`;
-    imagen.style.transform = "scale(1)";
-    imagen.style.cursor = "zoom-in";
-    modal.classList.remove("oculto");
-  }
-
-  function cerrarModalProducto() {
-    const modal = document.getElementById("modal-producto");
-    const imagen = document.getElementById("imagen-modal");
-    zoomActivo = false;
-    imagen.style.transform = "scale(1)";
-    imagen.style.cursor = "zoom-in";
-    modal.classList.add("oculto");
-  }
-
-  function cambiarImagen() {
-    const imagen = document.getElementById("imagen-modal");
-
-    if (imagenActual === "frente") {
-      imagen.src = `Buzos/${productoActual}-reves.png`;
-      imagenActual = "reves";
-    } else {
-      imagen.src = `Buzos/${productoActual}-frente.png`;
-      imagenActual = "frente";
-    }
-
-    zoomActivo = false;
-    imagen.style.transform = "scale(1)";
-    imagen.style.cursor = "zoom-in";
-  }
-
-  function zoomImagen() {
-    const imagen = document.getElementById("imagen-modal");
-
-    if (!zoomActivo) {
-      imagen.style.transform = "scale(2)";
-      imagen.style.cursor = "zoom-out";
-      zoomActivo = true;
-    } else {
-      imagen.style.transform = "scale(1)";
-      imagen.style.cursor = "zoom-in";
-      zoomActivo = false;
-    }
-  }
-
-  // Permitir zoom también al hacer clic directamente en la imagen
-  document.addEventListener("DOMContentLoaded", () => {
-    const imagen = document.getElementById("imagen-modal");
-    if (imagen) {
-      imagen.addEventListener("click", zoomImagen);
-    }
-  });
-
-
 
 
 
@@ -647,23 +580,6 @@ function mostrarPopup(texto, tiempo = 2000) {
 
 
 
-//cierra la sesion
-function confirmarCerrarSesion() {
-  document.getElementById("modal-cerrar-sesion").style.display = "flex";
-}
-
-function cerrarModal() {
-  document.getElementById("modal-cerrar-sesion").style.display = "none";
-}
-
-function cerrarSesion() {
-  window.location.href = "../Login/registro/logout.php";
-}
-
-
-
-
-
 //ventana de cerrar sesion
 function cerrarModalSesion() {
   document.getElementById("modal-sesion").style.display = "none";
@@ -672,7 +588,6 @@ function cerrarModalSesion() {
 function irARegistro() {
   window.location.href = "../Login/registro/registro.htm";
 }
-
 
 
 
@@ -746,5 +661,6 @@ function mostrarToast(mensaje, duracion = 2500) {
     }, 300);
   }, duracion);
 }
+
 
 

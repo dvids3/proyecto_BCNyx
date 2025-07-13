@@ -451,8 +451,10 @@ if (isset($_SESSION['id_usuario'])) {
             <div id="modal-pregunta-box" class="modal-pregunta">
                 <div class="modal-pregunta-content">
                     <span class="cerrar-pregunta">X</span>
-                    <textarea rows="4" placeholder="Pregunta"></textarea>
-                    <button class="btn-4" style="margin-top: 10px;">Enviar</button>
+                    <form action="guardar_pregunta.php" method="POST">
+                        <textarea name="pregunta" rows="4" placeholder="¿cuál es tu pregunta?" required></textarea>
+                        <button class="btn-4" type="submit" style="margin-top: 10px;">Enviar</button>
+                    </form>
                 </div>
             </div>
 
@@ -468,10 +470,13 @@ if (isset($_SESSION['id_usuario'])) {
             <div id="modal-sugerencias-box" class="modal-sugerencias">
                 <div class="modal-sugerencias-content">
                     <span class="cerrar-sugerencias">X</span>
-                    <textarea rows="4" placeholder="¿Cuál es tu idea?"></textarea>
-                    <button class="btn-4" style="margin-top: 10px;">Enviar</button>
+                    <form action="guardar_idea.php" method="POST">
+                        <textarea name="idea" rows="4" placeholder="¿Cuál es tu idea?" required></textarea>
+                        <button class="btn-4" type="submit" style="margin-top: 10px;">Enviar</button>
+                    </form>
                 </div>
             </div>
+
 
     
             <div class="bloog-1">
