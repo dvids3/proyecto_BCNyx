@@ -31,46 +31,69 @@ while ($row = mysqli_fetch_assoc($resultado)) {
 </head>
 <body>
   <h1>Resumen de Compra</h1>
-  <table border="1" cellpadding="10">
-    <thead>
-      <tr>
-        <th>Imagen</th>
-        <th>Producto</th>
-        <th>Precio</th>
-        <th>Cantidad</th>
-        <th>Subtotal</th>
-        <th>Eliminar</th>
-      </tr>
-    </thead>
-    <tbody>
-      <?php foreach ($productos as $p): ?>
-        <tr>
-          <td><img src="<?= $p['imagen'] ?>" class="imagen-producto" alt="producto"></td>
-          <td><?= $p['nombre_producto'] ?></td>
-          <td>$<?= number_format($p['precio'], 0, ',', '.') ?></td>
-          <td><?= $p['cantidad'] ?></td>
-          <td>$<?= number_format($p['precio'] * $p['cantidad'], 0, ',', '.') ?></td>
-          <td><button class="eliminar-producto" data-id="<?= $p['id_producto'] ?>">X</button></td>
-        </tr>
-      <?php endforeach; ?>
-    </tbody>
-    <tfoot>
-      <tr>
-        <td colspan="4" style="text-align:right"><strong>Total:</strong></td>
-        <td colspan="2"><strong>$<?= number_format($total, 0, ',', '.') ?></strong></td>
-      </tr>
-    </tfoot>
-  </table>
 
-  
-  <div class="imagen-video-checkout">
-    <video autoplay muted loop playsinline class="video-pago">
-      <source src="videos/caja_pago.mp4" type="video/mp4">
-    </video>
-  </div>
-
-  <h2>Método de pago</h2>
+  <!-- ✅ El formulario empieza aquí -->
   <form action="finalizar_pago.php" method="POST">
+
+    <table border="1" cellpadding="10">
+      <thead>
+        <tr>
+          <th>Imagen</th>
+          <th>Producto</th>
+          <th>Precio</th>
+          <th>Cantidad</th>
+          <th>Subtotal</th>
+          <th>Eliminar</th>
+        </tr>
+      </thead>
+      <tbody>
+        <?php foreach ($productos as $p): ?>
+          <tr>
+            <td><img src="<?= $p['imagen'] ?>" class="imagen-producto" alt="producto"></td>
+            <td>
+              <?= $p['nombre_producto'] ?><br>
+              <div class="tallas-disponibles">
+                <?php
+                $idProducto = $p['id_producto'];
+                $idOrden = $p['id']; // Asegúrate de tener esta columna 'id' en tu tabla 'ordenes'
+
+                $tallaQuery = "SELECT talla, stock FROM inventario_tallas WHERE id_producto = '$idProducto'";
+                $tallaResult = mysqli_query($conn, $tallaQuery);
+
+                while ($tallaRow = mysqli_fetch_assoc($tallaResult)) {
+                  $talla = $tallaRow['talla'];
+                  $stock = $tallaRow['stock'];
+                  $disabled = $stock <= 0;
+                  echo "<label class='talla-label'>";
+                  echo "<input type='radio' name='talla[{$idProducto}][{$idOrden}]' value='$talla' " . ($disabled ? "disabled" : "") . " required>";
+                  echo "<span style='" . ($disabled ? "opacity: 0.4; cursor: not-allowed;" : "") . "'>$talla</span>";
+                  echo "</label>";
+                }
+                ?>
+              </div>
+            </td>
+            <td>$<?= number_format($p['precio'], 0, ',', '.') ?></td>
+            <td><?= $p['cantidad'] ?></td>
+            <td>$<?= number_format($p['precio'] * $p['cantidad'], 0, ',', '.') ?></td>
+            <td><button class="eliminar-producto" data-id="<?= $p['id_producto'] ?>">X</button></td>
+          </tr>
+        <?php endforeach; ?>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="4" style="text-align:right"><strong>Total:</strong></td>
+          <td colspan="2"><strong>$<?= number_format($total, 0, ',', '.') ?></strong></td>
+        </tr>
+      </tfoot>
+    </table>
+
+    <div class="imagen-video-checkout">
+      <video autoplay muted loop playsinline class="video-pago">
+        <source src="videos/caja_pago.mp4" type="video/mp4">
+      </video>
+    </div>
+
+    <h2>Método de pago</h2>
     <select name="metodo_pago" required>
       <option value="">Selecciona una opción</option>
       <option value="Tarjeta">Tarjeta</option>
@@ -99,6 +122,7 @@ while ($row = mysqli_fetch_assoc($resultado)) {
 
     <br><button type="submit">Confirmar y pagar</button>
   </form>
+  <!-- ✅ El formulario termina aquí -->
 
   <script type="module" src="script_pago.js"></script>
 </body>

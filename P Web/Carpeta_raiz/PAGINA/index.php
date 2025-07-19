@@ -172,51 +172,55 @@ if (isset($_SESSION['id_usuario'])) {
     <section class="oferts container" id=lista-1>
         <h2>Nuestros productos principales</h2>
         <p>
-            Por ahi dicen que la mejor calidad...
+            Our main products
         </p>
 
         <div class="oferts-content">
             <div class="ofert-1">
                 <img 
-                src="Buzos/B5-frente.png" 
-                class="B5" 
-                alt="buzo"
-                onclick="abrirModalProducto('B5')">
+                    src="Buzos/B7-frente.png" 
+                    class="Camisa" 
+                    alt="Detras del DJ" 
+                    onclick="abrirModalProducto('B7')">
 
                 <div class="product-txt">
-                <h3>Buzo 1</h3>
-                <p>mejor calidad</p>
-                <p class="precio">100000</p>
-                <a href="#" class="agregar-carrito btn-3"
-                data-id="1"
-                data-nombre="Buzo 1"
-                data-precio="100000"
-                data-imagen="Buzos/B5-frente.png">Agregar</a>
-                </div>
-            </div>
-
-            
-            <div class="ofert-1">
-                <img 
-                    src="Buzos/B8-frente.png" 
-                    class="B8" 
-                    alt="buzo"
-                    onclick="abrirModalProducto('B8')">
-
-                <div class="product-txt">
-                    <h3>Buzo 2</h3>
+                    <h3>Detras del DJ</h3>
                     <p>mejor calidad</p>
                     <p class="precio">100000</p>
 
                     <a href="#" class="agregar-carrito btn-3"
-                    data-id="2"
-                    data-nombre="Buzo 2"
-                    data-precio="100000"
-                    data-imagen="Buzos/B8-frente.png">
-                    Agregar
+                        data-id="1"
+                        data-nombre="Detras del DJ"
+                        data-precio="100000"
+                        data-imagen="Buzos/B7-frente.png">
+                        Agregar
                     </a>
                 </div>
             </div>
+            
+            <div class="ofert-1">
+                <img 
+                    src="Buzos/B6-frente.png" 
+                    class="Camisa" 
+                    alt="Pretty GIRL" 
+                    onclick="abrirModalProducto('B6')">
+
+                <div class="product-txt">
+                    <h3>Pretty GIRL</h3>
+                    <p>mejor calidad</p>
+                    <p class="precio">100000</p>
+
+                    <a href="#" class="agregar-carrito btn-3"
+                        data-id="2"
+                        data-nombre="Pretty GIRL"
+                        data-precio="100000"
+                        data-imagen="Buzos/B6-frente.png">
+                        Agregar
+                    </a>
+                </div>
+            </div>
+
+
 
             <div class="logan-1">
                 <h3>Rels B (Skinny Flakk)</h3>
@@ -238,45 +242,44 @@ if (isset($_SESSION['id_usuario'])) {
 
             <div class="ofert-1">
                 <img 
-                    src="Buzos/B1-frente.png" 
-                    class="B1" 
-                    alt="buzo"
-                    onclick="abrirModalProducto('B1')">
+                    src="Buzos/B3-frente.png" 
+                    class="Camisa" 
+                    alt="Jocelyn..." 
+                    onclick="abrirModalProducto('B3')">
 
                 <div class="product-txt">
-                    <h3>Buzo 3</h3>
+                    <h3>Jocelyn...</h3>
                     <p>mejor calidad</p>
                     <p class="precio">100000</p>
 
                     <a href="#" class="agregar-carrito btn-3"
-                    data-id="3"
-                    data-nombre="Buzo 3"
-                    data-precio="100000"
-                    data-imagen="Buzos/B1-frente.png">
-                    Agregar
+                        data-id="3"
+                        data-nombre="Jocelyn..."
+                        data-precio="100000"
+                        data-imagen="Buzos/B3-frente.png">
+                        Agregar
                     </a>
                 </div>
             </div>
-
  
             <div class="ofert-1">
                 <img 
                     src="Buzos/B2-frente.png" 
-                    class="B2" 
-                    alt="buzo" 
+                    class="Camisa" 
+                    alt="Game Explained" 
                     onclick="abrirModalProducto('B2')">
 
                 <div class="product-txt">
-                    <h3>Buzo 4</h3>
+                    <h3>Game Explained</h3>
                     <p>mejor calidad</p>
                     <p class="precio">100000</p>
                     
                     <a href="#" class="agregar-carrito btn-3"
-                    data-id="4"
-                    data-nombre="Buzo 4"
-                    data-precio="100000"
-                    data-imagen="Buzos/B2-frente.png">
-                    Agregar
+                        data-id="4"
+                        data-nombre="Game Explained"
+                        data-precio="100000"
+                        data-imagen="Buzos/B2-frente.png">
+                        Agregar
                     </a>
                 </div>
             </div>
@@ -307,96 +310,92 @@ if (isset($_SESSION['id_usuario'])) {
             Los Productos
         </p>
         <div class="product-content">
+            
+
             <div class="ofert-1">
                 <img 
-                    src="Buzos/B3-frente.png" 
-                    class="B3" 
-                    alt="buzo" 
-                    onclick="abrirModalProducto('B3')">
+                    src="Buzos/B1-frente.png" 
+                    class="Camisa" 
+                    alt="INTRO"
+                    onclick="abrirModalProducto('B1')">
 
                 <div class="product-txt">
-                    <h3>Buzo 5</h3>
+                    <h3>INTRO</h3>
                     <p>mejor calidad</p>
                     <p class="precio">100000</p>
 
                     <a href="#" class="agregar-carrito btn-3"
-                    data-id="5"
-                    data-nombre="Buzo 5"
-                    data-precio="100000"
-                    data-imagen="Buzos/B3-frente.png">
-                    Agregar
+                        data-id="5"
+                        data-nombre="INTRO"
+                        data-precio="100000"
+                        data-imagen="Buzos/B1-frente.png">
+                        Agregar
                     </a>
                 </div>
             </div>
-
 
             <div class="ofert-1">
                 <img 
                     src="Buzos/B4-frente.png" 
-                    class="B4" 
-                    alt="buzo" 
+                    class="Camisa" 
+                    alt="XXX" 
                     onclick="abrirModalProducto('B4')">
 
                 <div class="product-txt">
-                    <h3>Buzo 6</h3>
-                    <p>mejor calidad</p>
+                    <h3>XXX</h3>
+                    <p></p>
                     <p class="precio">100000</p>
 
                     <a href="#" class="agregar-carrito btn-3"
-                    data-id="6"
-                    data-nombre="Buzo 6"
-                    data-precio="100000"
-                    data-imagen="Buzos/B4-frente.png">
-                    Agregar
+                        data-id="6"
+                        data-nombre="XXX"
+                        data-precio="100000"
+                        data-imagen="Buzos/B4-frente.png">
+                        Agregar
                     </a>
                 </div>
             </div>
 
 
-
             <div class="ofert-1">
                 <img 
-                    src="Buzos/B6-frente.png" 
-                    class="B6" 
-                    alt="buzo" 
-                    onclick="abrirModalProducto('B6')">
+                src="Buzos/B8-frente.png" 
+                class="Camisa" 
+                alt="New Sunset"
+                onclick="abrirModalProducto('B8')">
 
                 <div class="product-txt">
-                    <h3>Buzo 7</h3>
+                    <h3>New Sunset</h3>
                     <p>mejor calidad</p>
                     <p class="precio">100000</p>
 
                     <a href="#" class="agregar-carrito btn-3"
-                    data-id="7"
-                    data-nombre="Buzo 7"
-                    data-precio="100000"
-                    data-imagen="Buzos/B6-frente.png">
-                    Agregar
+                        data-id="7"
+                        data-nombre="New Sunset"
+                        data-precio="100000"
+                        data-imagen="Buzos/B8-frente.png">
+                        Agregar
                     </a>
                 </div>
             </div>
 
 
-
             <div class="ofert-1">
                 <img 
-                    src="Buzos/B7-frente.png" 
-                    class="B7" 
-                    alt="buzo" 
-                    onclick="abrirModalProducto('B7')">
+                src="Buzos/B5-frente.png" 
+                class="Camisa" 
+                alt="Cieelo"
+                onclick="abrirModalProducto('B5')">
 
                 <div class="product-txt">
-                    <h3>Buzo 8</h3>
-                    <p>mejor calidad</p>
-                    <p class="precio">100000</p>
-
-                    <a href="#" class="agregar-carrito btn-3"
+                <h3>Cieelo</h3>
+                <p>New Sunset</p>
+                <p class="precio">100000</p>
+                <a href="#" class="agregar-carrito btn-3"
                     data-id="8"
-                    data-nombre="Buzo 8"
+                    data-nombre="Cieelo"
                     data-precio="100000"
-                    data-imagen="Buzos/B7-frente.png">
-                    Agregar
-                    </a>
+                    data-imagen="Buzos/B5-frente.png">Agregar</a>
                 </div>
             </div>
 
@@ -404,12 +403,12 @@ if (isset($_SESSION['id_usuario'])) {
             <div class="ofert-1 locked">
                 <img src="images/candado.png" alt="bloqueado">
                 <div class="product-txt">
-                    <h3>Buzo 9</h3>
-                    <p>mejor calidad</p>
-                    <p class="precio">100000</p>
+                    <h3>Blocked</h3>
+                    <p></p>
+                    <p class="precio"></p>
                     <a href="#" class="agregar-carrito btn-3"
                     data-id="9"
-                    data-nombre="Buzo 10"
+                    data-nombre=""
                     data-precio="100000"
                     data-imagen="images/candado.png">
                     Agregar
@@ -420,12 +419,12 @@ if (isset($_SESSION['id_usuario'])) {
             <div class="ofert-1 locked">
                 <img src="images/candado.png" alt="bloqueado">
                 <div class="product-txt">
-                    <h3>Buzo 10</h3>
-                    <p>mejor calidad</p>
-                    <p class="precio">100000</p>
+                    <h3>Blocked</h3>
+                    <p></p>
+                    <p class="precio"></p>
                     <a href="#" class="agregar-carrito btn-3"
                     data-id="10"
-                    data-nombre="Buzo 10"
+                    data-nombre=""
                     data-precio="100000"
                     data-imagen="images/candado.png">
                     Agregar

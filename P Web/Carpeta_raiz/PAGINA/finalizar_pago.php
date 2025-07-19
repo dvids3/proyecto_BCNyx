@@ -30,7 +30,6 @@ if ($num_productos == 0) {
     exit;
 }
 
-// 🚫 Validación básica del método de pago
 if (!$metodo) {
     echo "<script>
             alert('Selecciona un método de pago.');
@@ -41,7 +40,7 @@ if (!$metodo) {
 
 try {
     if (!$id_usuario) {
-        // 🧾 Usuario NO logueado: recoger todos los datos
+        // 🧾 Usuario NO logueado
         $nombre = $_POST['nombre'] ?? '';
         $apellidos = $_POST['apellidos'] ?? '';
         $tipo_documento = $_POST['tipo_documento'] ?? '';
@@ -68,7 +67,7 @@ try {
         $stmt->close();
 
     } else {
-        // ✅ Usuario logueado: recoger dirección y observaciones del formulario
+        // ✅ Usuario logueado
         $direccion = $_POST['direccion'] ?? '';
         $observaciones = $_POST['observaciones'] ?? '';
 
@@ -84,7 +83,32 @@ try {
         $stmt->close();
     }
 
-    // ✅ Cambiar estado de las órdenes a "confirmado"
+    // 🔽 Descontar inventario de tallas
+    if (!empty($_POST['talla'])) {
+        foreach ($_POST['talla'] as $id_producto => $subordenes) {
+            foreach ($subordenes as $id_orden => $talla) {
+                // Obtener cantidad de ese producto en esa orden
+                $q = "SELECT cantidad FROM ordenes WHERE id = '$id_orden'";
+                $res = mysqli_query($conn, $q);
+                $fila = mysqli_fetch_assoc($res);
+                $cantidad = (int)$fila['cantidad'];
+
+                // Actualizar el stock en inventario_tallas
+                $update = "UPDATE inventario_tallas 
+                           SET stock = stock - $cantidad 
+                           WHERE id_producto = '$id_producto' AND talla = '$talla'";
+                mysqli_query($conn, $update);
+
+                // Guardar la talla también en la tabla ordenes
+                $upTalla = "UPDATE ordenes 
+                            SET talla = '$talla' 
+                            WHERE id = '$id_orden'";
+                mysqli_query($conn, $upTalla);
+            }
+        }
+    }
+
+    // ✅ Confirmar estado de orden
     if ($id_usuario) {
         $stmt = $conn->prepare("UPDATE ordenes SET estado = 'confirmado' WHERE id_usuario = ? AND estado = 'pendiente'");
         $stmt->bind_param("i", $id_usuario);
@@ -99,7 +123,7 @@ try {
     $stmt->execute();
     $stmt->close();
 
-    // 🎉 Redirigir a gracias.php
+    // 🎉 Redirigir
     header("Location: gracias.php");
     exit;
 
