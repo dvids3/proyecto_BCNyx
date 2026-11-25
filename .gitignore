@@ -1,0 +1,11 @@
+PAGINA/vendor/
+PAGINA/whatsapp_log.txt
+*.log
+.env
+.env.*
+!.env.example
+.local/*
+!.local/.htaccess
+tests/.runtime/
+PAGINA/videos/video televisor*
+docs/*.txt
