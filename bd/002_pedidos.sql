@@ -12,7 +12,6 @@ UPDATE carrito SET clave_propietario = CASE WHEN id_usuario > 0 THEN CONCAT('u:'
 ALTER TABLE carrito ADD UNIQUE KEY uq_carrito_propietario_producto (clave_propietario, id_producto);
 
 ALTER TABLE inventario_tallas
-  ADD COLUMN reservado INT NOT NULL DEFAULT 0,
   ADD UNIQUE KEY uq_producto_talla (id_producto, talla),
   ADD CONSTRAINT chk_inventario CHECK (stock >= 0 AND reservado >= 0 AND reservado <= stock);
 
