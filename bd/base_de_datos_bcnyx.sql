@@ -97,7 +97,7 @@ CREATE TABLE `inventario_tallas` (
   `id_inventario` int(11) NOT NULL,
   `id_producto` int(11) NOT NULL,
   `talla` enum('S','M','L','XL') NOT NULL,
-  `stock` int(11) NOT NULL DEFAULT 0
+  `stock` int(11) NOT NULL DEFAULT 0,
   `reservado` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
