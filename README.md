@@ -5,13 +5,13 @@ Plantilla local de tienda en PHP 8.2 y MariaDB/MySQL. Incluye catálogo, cuentas
 ## Instalación nueva
 
 1. Instala PHP 8.2+ con `mysqli`, `mbstring`, `curl` y Composer; usa MySQL/MariaDB con InnoDB.
-2. Crea una base vacía `base_de_datos_bcnyx` e importa [`bd/instalar_limpio.sql`](bd/instalar_limpio.sql). Los productos de ejemplo se crean con stock cero.
+2. Crea una base vacía `base_de_datos_bcnyx` e importa el único archivo SQL, [`bd/instalar_limpio.sql`](bd/instalar_limpio.sql). Los productos de ejemplo se crean con stock cero.
 3. Ejecuta `composer install` en `PAGINA/`.
 4. Configura las variables de entorno del proceso Apache/PHP según [`.env.example`](.env.example). El archivo `.env.example` es una guía; la aplicación **no carga archivos `.env` automáticamente**. En una petición desde `localhost`, la conexión predeterminada usa `root` sin clave y la base `base_de_datos_bcnyx`. Fuera de localhost, la app falla de forma cerrada si no encuentra `BCNYX_DB_USER` y `BCNYX_DB_PASSWORD`; usa una cuenta dedicada y una clave segura, nunca `root`.
 5. Ajusta el stock con `php scripts/ajustar_stock.php 2 S 5` (producto 2, talla S, stock físico total 5).
-6. Abre `http://localhost/BCNyx/PAGINA/index.php`.
+6. Abre `http://localhost/proyecto_BCNyx/PAGINA/index.php`.
 
-El volcado [`bd/base_de_datos_bcnyx.sql`](bd/base_de_datos_bcnyx.sql) es histórico y contiene datos de muestra. Para una instalación nueva usa `instalar_limpio.sql`. Para actualizar una instalación con el esquema antiguo, aplica primero `bd/recuperaciones_clave.sql` y luego `bd/002_pedidos.sql` **una sola vez**, después de hacer una copia de seguridad. Si la base ya tenía `pedidos`, aplica [`bd/003_datos_envio_reservas.sql`](bd/003_datos_envio_reservas.sql) una sola vez.
+El archivo `instalar_limpio.sql` crea todas las tablas que requiere la versión actual. Se importa en una base vacía y no debe ejecutarse encima de una instalación existente. Esta distribución no incluye migraciones para bases antiguas; conserva un respaldo antes de reemplazarlas.
 
 ## Estados de pedidos e inventario
 

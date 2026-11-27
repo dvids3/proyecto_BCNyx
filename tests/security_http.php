@@ -4,7 +4,7 @@ if (PHP_SAPI !== 'cli') exit(1);
 $base = getenv('BCNYX_TEST_URL') ?: 'http://localhost/BCNyx';
 if (!str_starts_with($base, 'http://localhost/') && !str_starts_with($base, 'http://127.0.0.1/')) exit(2);
 $rutas = [
-    '/bd/base_de_datos_bcnyx.sql',
+    '/bd/instalar_limpio.sql',
     '/docs/recuperacion-clave.md',
     '/PAGINA/whatsapp_log.txt',
     '/PAGINA/vendor/autoload.php',
